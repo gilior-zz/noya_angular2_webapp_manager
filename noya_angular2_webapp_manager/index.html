@@ -1,0 +1,42 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <meta charset="utf-8" />
+
+</head>
+<body>
+
+    <my-app></my-app>
+    <!-- #region  angular-->
+    <script src="lib/system.src.js"></script>
+    <script src="lib/Rx.js"></script>
+    <script src="lib/angular2-polyfills.js"></script>
+    <script src="lib/angular2.dev.js"></script>
+    <script src="lib/router.dev.js"></script>
+    <script src="lib/http.dev.js"></script>
+    <!-- #endregion angular-->
+    <!-- #region  config-->
+    <script>
+        System.config({
+
+            packages: {
+                app: {
+
+                    defaultExtension: 'js'
+                }
+            },
+            map: {
+                text: "lib/system.text.js",
+            }
+        });
+
+        System.import('app/main')
+            .then(null, console.error.bind(console));
+    </script>
+
+
+
+
+</body>
+</html>

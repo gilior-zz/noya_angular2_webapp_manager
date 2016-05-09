@@ -1,0 +1,601 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.Default.props" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.Default.props')" />
+  <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
+  <Import Project="..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props" Condition="Exists('..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{D83BEF04-328E-4595-B0CC-51994A48A154}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>noya_angular2_webapp_manager</RootNamespace>
+    <AssemblyName>noya_angular2_webapp_manager</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <UseIISExpress>true</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+    <TypeScriptToolsVersion>1.7</TypeScriptToolsVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.6.0.4\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Net.Http.Formatting, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.3\lib\net45\System.Net.Http.Formatting.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Http, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.5.2.3\lib\net45\System.Web.Http.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Http.WebHost, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.WebHost.5.2.3\lib\net45\System.Web.Http.WebHost.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="app\app.component.html" />
+    <Content Include="Global.asax" />
+    <Content Include="packages.config" />
+    <Content Include="tinymce\langs\readme.md" />
+    <Content Include="tinymce\skins\lightgray\AbsoluteLayout.less" />
+    <Content Include="tinymce\skins\lightgray\Animations.less" />
+    <Content Include="tinymce\skins\lightgray\Arrows.less" />
+    <Content Include="tinymce\skins\lightgray\Button.less" />
+    <Content Include="tinymce\skins\lightgray\ButtonGroup.less" />
+    <Content Include="tinymce\skins\lightgray\Checkbox.less" />
+    <Content Include="tinymce\skins\lightgray\ColorBox.less" />
+    <Content Include="tinymce\skins\lightgray\ColorButton.less" />
+    <Content Include="tinymce\skins\lightgray\ColorPicker.less" />
+    <Content Include="tinymce\skins\lightgray\ComboBox.less" />
+    <Content Include="tinymce\skins\lightgray\Container.less" />
+    <Content Include="tinymce\skins\lightgray\Content.Inline.less" />
+    <Content Include="tinymce\skins\lightgray\Content.less" />
+    <Content Include="tinymce\skins\lightgray\Content.Objects.less" />
+    <Content Include="tinymce\skins\lightgray\CropRect.less" />
+    <Content Include="tinymce\skins\lightgray\FieldSet.less" />
+    <Content Include="tinymce\skins\lightgray\FitLayout.less" />
+    <Content Include="tinymce\skins\lightgray\FloatPanel.less" />
+    <Content Include="tinymce\skins\lightgray\FlowLayout.less" />
+    <Content Include="tinymce\skins\lightgray\fonts\readme.md" />
+    <Content Include="tinymce\skins\lightgray\fonts\tinymce-small.eot" />
+    <Content Include="tinymce\skins\lightgray\fonts\tinymce-small.json" />
+    <Content Include="tinymce\skins\lightgray\fonts\tinymce-small.ttf" />
+    <Content Include="tinymce\skins\lightgray\fonts\tinymce-small.woff" />
+    <Content Include="tinymce\skins\lightgray\fonts\tinymce.eot" />
+    <Content Include="tinymce\skins\lightgray\fonts\tinymce.json" />
+    <Content Include="tinymce\skins\lightgray\fonts\tinymce.ttf" />
+    <Content Include="tinymce\skins\lightgray\fonts\tinymce.woff" />
+    <Content Include="tinymce\skins\lightgray\Icons.Ie7.less" />
+    <Content Include="tinymce\skins\lightgray\Icons.less" />
+    <Content Include="tinymce\skins\lightgray\Iframe.less" />
+    <Content Include="tinymce\skins\lightgray\ImagePanel.less" />
+    <Content Include="tinymce\skins\lightgray\InfoBox.less" />
+    <Content Include="tinymce\skins\lightgray\Label.less" />
+    <Content Include="tinymce\skins\lightgray\ListBox.less" />
+    <Content Include="tinymce\skins\lightgray\Menu.less" />
+    <Content Include="tinymce\skins\lightgray\MenuBar.less" />
+    <Content Include="tinymce\skins\lightgray\MenuButton.less" />
+    <Content Include="tinymce\skins\lightgray\MenuItem.less" />
+    <Content Include="tinymce\skins\lightgray\Mixins.less" />
+    <Content Include="tinymce\skins\lightgray\Notification.less" />
+    <Content Include="tinymce\skins\lightgray\Panel.less" />
+    <Content Include="tinymce\skins\lightgray\Path.less" />
+    <Content Include="tinymce\skins\lightgray\Progress.less" />
+    <Content Include="tinymce\skins\lightgray\Radio.less" />
+    <Content Include="tinymce\skins\lightgray\Reset.less" />
+    <Content Include="tinymce\skins\lightgray\ResizeHandle.less" />
+    <Content Include="tinymce\skins\lightgray\Scrollable.less" />
+    <Content Include="tinymce\skins\lightgray\SelectBox.less" />
+    <Content Include="tinymce\skins\lightgray\skin.dev.less" />
+    <Content Include="tinymce\skins\lightgray\skin.ie7.dev.less" />
+    <Content Include="tinymce\skins\lightgray\skin.ie7.less" />
+    <Content Include="tinymce\skins\lightgray\skin.less" />
+    <Content Include="tinymce\skins\lightgray\Slider.less" />
+    <Content Include="tinymce\skins\lightgray\Spacer.less" />
+    <Content Include="tinymce\skins\lightgray\SplitButton.less" />
+    <Content Include="tinymce\skins\lightgray\StackLayout.less" />
+    <Content Include="tinymce\skins\lightgray\TabPanel.less" />
+    <Content Include="tinymce\skins\lightgray\TextBox.less" />
+    <Content Include="tinymce\skins\lightgray\Throbber.less" />
+    <Content Include="tinymce\skins\lightgray\TinyMCE.less" />
+    <Content Include="tinymce\skins\lightgray\ToolTip.less" />
+    <Content Include="tinymce\skins\lightgray\Variables.less" />
+    <Content Include="tinymce\skins\lightgray\Window.less" />
+    <None Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+    <None Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="index.html" />
+    <Content Include="lib\angular2-polyfills.js" />
+    <Content Include="lib\angular2.dev.js" />
+    <Content Include="lib\es6-shim.min.js" />
+    <Content Include="lib\http.dev.js" />
+    <Content Include="lib\jquery-scrollto.js" />
+    <Content Include="lib\router.dev.js" />
+    <Content Include="lib\Rx.js" />
+    <Content Include="lib\shims_for_IE.js" />
+    <Content Include="lib\system-polyfills.js" />
+    <Content Include="lib\system.src.js" />
+    <Content Include="lib\system.text.js" />
+    <Content Include="tinymce\classes\AddOnManager.js" />
+    <Content Include="tinymce\classes\caret\CaretBookmark.js" />
+    <Content Include="tinymce\classes\caret\CaretCandidate.js" />
+    <Content Include="tinymce\classes\caret\CaretContainer.js" />
+    <Content Include="tinymce\classes\caret\CaretPosition.js" />
+    <Content Include="tinymce\classes\caret\CaretUtils.js" />
+    <Content Include="tinymce\classes\caret\CaretWalker.js" />
+    <Content Include="tinymce\classes\caret\FakeCaret.js" />
+    <Content Include="tinymce\classes\caret\LineUtils.js" />
+    <Content Include="tinymce\classes\caret\LineWalker.js" />
+    <Content Include="tinymce\classes\Compat.js" />
+    <Content Include="tinymce\classes\data\Binding.js" />
+    <Content Include="tinymce\classes\data\ObservableArray.js" />
+    <Content Include="tinymce\classes\data\ObservableObject.js" />
+    <Content Include="tinymce\classes\dom\BookmarkManager.js" />
+    <Content Include="tinymce\classes\dom\ControlSelection.js" />
+    <Content Include="tinymce\classes\dom\Dimensions.js" />
+    <Content Include="tinymce\classes\dom\DomQuery.js" />
+    <Content Include="tinymce\classes\dom\DOMUtils.js" />
+    <Content Include="tinymce\classes\dom\ElementUtils.js" />
+    <Content Include="tinymce\classes\dom\EventUtils.js" />
+    <Content Include="tinymce\classes\dom\NodePath.js" />
+    <Content Include="tinymce\classes\dom\NodeType.js" />
+    <Content Include="tinymce\classes\dom\Range.js" />
+    <Content Include="tinymce\classes\dom\RangeUtils.js" />
+    <Content Include="tinymce\classes\dom\ScriptLoader.js" />
+    <Content Include="tinymce\classes\dom\Selection.js" />
+    <Content Include="tinymce\classes\dom\Serializer.js" />
+    <Content Include="tinymce\classes\dom\Sizzle.jQuery.js" />
+    <Content Include="tinymce\classes\dom\Sizzle.js" />
+    <Content Include="tinymce\classes\dom\StyleSheetLoader.js" />
+    <Content Include="tinymce\classes\dom\TreeWalker.js" />
+    <Content Include="tinymce\classes\dom\TridentSelection.js" />
+    <Content Include="tinymce\classes\DragDropOverrides.js" />
+    <Content Include="tinymce\classes\Editor.js" />
+    <Content Include="tinymce\classes\EditorCommands.js" />
+    <Content Include="tinymce\classes\EditorManager.js" />
+    <Content Include="tinymce\classes\EditorObservable.js" />
+    <Content Include="tinymce\classes\EditorUpload.js" />
+    <Content Include="tinymce\classes\EnterKey.js" />
+    <Content Include="tinymce\classes\Env.js" />
+    <Content Include="tinymce\classes\file\BlobCache.js" />
+    <Content Include="tinymce\classes\file\Conversions.js" />
+    <Content Include="tinymce\classes\file\ImageScanner.js" />
+    <Content Include="tinymce\classes\file\Uploader.js" />
+    <Content Include="tinymce\classes\fmt\Hooks.js" />
+    <Content Include="tinymce\classes\fmt\Preview.js" />
+    <Content Include="tinymce\classes\FocusManager.js" />
+    <Content Include="tinymce\classes\ForceBlocks.js" />
+    <Content Include="tinymce\classes\Formatter.js" />
+    <Content Include="tinymce\classes\geom\ClientRect.js" />
+    <Content Include="tinymce\classes\geom\Rect.js" />
+    <Content Include="tinymce\classes\html\DomParser.js" />
+    <Content Include="tinymce\classes\html\Entities.js" />
+    <Content Include="tinymce\classes\html\Node.js" />
+    <Content Include="tinymce\classes\html\SaxParser.js" />
+    <Content Include="tinymce\classes\html\Schema.js" />
+    <Content Include="tinymce\classes\html\Serializer.js" />
+    <Content Include="tinymce\classes\html\Styles.js" />
+    <Content Include="tinymce\classes\html\Writer.js" />
+    <Content Include="tinymce\classes\jquery.tinymce.js" />
+    <Content Include="tinymce\classes\LegacyInput.js" />
+    <Content Include="tinymce\classes\Mode.js" />
+    <Content Include="tinymce\classes\NodeChange.js" />
+    <Content Include="tinymce\classes\NotificationManager.js" />
+    <Content Include="tinymce\classes\Register.js" />
+    <Content Include="tinymce\classes\SelectionOverrides.js" />
+    <Content Include="tinymce\classes\Shortcuts.js" />
+    <Content Include="tinymce\classes\text\ExtendingChar.js" />
+    <Content Include="tinymce\classes\text\Zwsp.js" />
+    <Content Include="tinymce\classes\ui\AbsoluteLayout.js" />
+    <Content Include="tinymce\classes\ui\BoxUtils.js" />
+    <Content Include="tinymce\classes\ui\Button.js" />
+    <Content Include="tinymce\classes\ui\ButtonGroup.js" />
+    <Content Include="tinymce\classes\ui\Checkbox.js" />
+    <Content Include="tinymce\classes\ui\ClassList.js" />
+    <Content Include="tinymce\classes\ui\Collection.js" />
+    <Content Include="tinymce\classes\ui\ColorBox.js" />
+    <Content Include="tinymce\classes\ui\ColorButton.js" />
+    <Content Include="tinymce\classes\ui\ColorPicker.js" />
+    <Content Include="tinymce\classes\ui\ComboBox.js" />
+    <Content Include="tinymce\classes\ui\Container.js" />
+    <Content Include="tinymce\classes\ui\Control.js" />
+    <Content Include="tinymce\classes\ui\DomUtils.js" />
+    <Content Include="tinymce\classes\ui\DragHelper.js" />
+    <Content Include="tinymce\classes\ui\ElementPath.js" />
+    <Content Include="tinymce\classes\ui\Factory.js" />
+    <Content Include="tinymce\classes\ui\FieldSet.js" />
+    <Content Include="tinymce\classes\ui\FilePicker.js" />
+    <Content Include="tinymce\classes\ui\FitLayout.js" />
+    <Content Include="tinymce\classes\ui\FlexLayout.js" />
+    <Content Include="tinymce\classes\ui\FloatPanel.js" />
+    <Content Include="tinymce\classes\ui\FlowLayout.js" />
+    <Content Include="tinymce\classes\ui\Form.js" />
+    <Content Include="tinymce\classes\ui\FormatControls.js" />
+    <Content Include="tinymce\classes\ui\FormItem.js" />
+    <Content Include="tinymce\classes\ui\GridLayout.js" />
+    <Content Include="tinymce\classes\ui\Iframe.js" />
+    <Content Include="tinymce\classes\ui\InfoBox.js" />
+    <Content Include="tinymce\classes\ui\KeyboardNavigation.js" />
+    <Content Include="tinymce\classes\ui\Label.js" />
+    <Content Include="tinymce\classes\ui\Layout.js" />
+    <Content Include="tinymce\classes\ui\ListBox.js" />
+    <Content Include="tinymce\classes\ui\Menu.js" />
+    <Content Include="tinymce\classes\ui\MenuBar.js" />
+    <Content Include="tinymce\classes\ui\MenuButton.js" />
+    <Content Include="tinymce\classes\ui\MenuItem.js" />
+    <Content Include="tinymce\classes\ui\MessageBox.js" />
+    <Content Include="tinymce\classes\ui\Movable.js" />
+    <Content Include="tinymce\classes\ui\Notification.js" />
+    <Content Include="tinymce\classes\ui\Panel.js" />
+    <Content Include="tinymce\classes\ui\PanelButton.js" />
+    <Content Include="tinymce\classes\ui\Path.js" />
+    <Content Include="tinymce\classes\ui\Progress.js" />
+    <Content Include="tinymce\classes\ui\Radio.js" />
+    <Content Include="tinymce\classes\ui\ReflowQueue.js" />
+    <Content Include="tinymce\classes\ui\Resizable.js" />
+    <Content Include="tinymce\classes\ui\ResizeHandle.js" />
+    <Content Include="tinymce\classes\ui\Scrollable.js" />
+    <Content Include="tinymce\classes\ui\SelectBox.js" />
+    <Content Include="tinymce\classes\ui\Selector.js" />
+    <Content Include="tinymce\classes\ui\Slider.js" />
+    <Content Include="tinymce\classes\ui\Spacer.js" />
+    <Content Include="tinymce\classes\ui\SplitButton.js" />
+    <Content Include="tinymce\classes\ui\StackLayout.js" />
+    <Content Include="tinymce\classes\ui\TabPanel.js" />
+    <Content Include="tinymce\classes\ui\TextBox.js" />
+    <Content Include="tinymce\classes\ui\Throbber.js" />
+    <Content Include="tinymce\classes\ui\Toolbar.js" />
+    <Content Include="tinymce\classes\ui\Tooltip.js" />
+    <Content Include="tinymce\classes\ui\Widget.js" />
+    <Content Include="tinymce\classes\ui\Window.js" />
+    <Content Include="tinymce\classes\UndoManager.js" />
+    <Content Include="tinymce\classes\util\Arr.js" />
+    <Content Include="tinymce\classes\util\Class.js" />
+    <Content Include="tinymce\classes\util\Color.js" />
+    <Content Include="tinymce\classes\util\Delay.js" />
+    <Content Include="tinymce\classes\util\EventDispatcher.js" />
+    <Content Include="tinymce\classes\util\Fun.js" />
+    <Content Include="tinymce\classes\util\I18n.js" />
+    <Content Include="tinymce\classes\util\JSON.js" />
+    <Content Include="tinymce\classes\util\JSONP.js" />
+    <Content Include="tinymce\classes\util\JSONRequest.js" />
+    <Content Include="tinymce\classes\util\LocalStorage.js" />
+    <Content Include="tinymce\classes\util\Observable.js" />
+    <Content Include="tinymce\classes\util\Promise.js" />
+    <Content Include="tinymce\classes\util\Quirks.js" />
+    <Content Include="tinymce\classes\util\Tools.js" />
+    <Content Include="tinymce\classes\util\URI.js" />
+    <Content Include="tinymce\classes\util\VK.js" />
+    <Content Include="tinymce\classes\util\XHR.js" />
+    <Content Include="tinymce\classes\WindowManager.js" />
+    <Content Include="tinymce\jquery.tinymce.min.js" />
+    <Content Include="tinymce\license.txt" />
+    <Content Include="tinymce\plugins\advlist\plugin.js" />
+    <Content Include="tinymce\plugins\advlist\plugin.min.js" />
+    <Content Include="tinymce\plugins\anchor\plugin.js" />
+    <Content Include="tinymce\plugins\anchor\plugin.min.js" />
+    <Content Include="tinymce\plugins\autolink\plugin.js" />
+    <Content Include="tinymce\plugins\autolink\plugin.min.js" />
+    <Content Include="tinymce\plugins\autoresize\plugin.js" />
+    <Content Include="tinymce\plugins\autoresize\plugin.min.js" />
+    <Content Include="tinymce\plugins\autosave\plugin.js" />
+    <Content Include="tinymce\plugins\autosave\plugin.min.js" />
+    <Content Include="tinymce\plugins\bbcode\plugin.js" />
+    <Content Include="tinymce\plugins\bbcode\plugin.min.js" />
+    <Content Include="tinymce\plugins\charmap\plugin.js" />
+    <Content Include="tinymce\plugins\charmap\plugin.min.js" />
+    <Content Include="tinymce\plugins\codesample\classes\Dialog.js" />
+    <Content Include="tinymce\plugins\codesample\classes\Plugin.js" />
+    <Content Include="tinymce\plugins\codesample\classes\Prism.js" />
+    <Content Include="tinymce\plugins\codesample\classes\Utils.js" />
+    <Content Include="tinymce\plugins\codesample\css\prism.css" />
+    <Content Include="tinymce\plugins\codesample\plugin.dev.js" />
+    <Content Include="tinymce\plugins\codesample\plugin.js" />
+    <Content Include="tinymce\plugins\codesample\plugin.min.js" />
+    <Content Include="tinymce\plugins\code\plugin.js" />
+    <Content Include="tinymce\plugins\code\plugin.min.js" />
+    <Content Include="tinymce\plugins\colorpicker\plugin.js" />
+    <Content Include="tinymce\plugins\colorpicker\plugin.min.js" />
+    <Content Include="tinymce\plugins\compat3x\css\dialog.css" />
+    <Content Include="tinymce\plugins\compat3x\img\buttons.png" />
+    <Content Include="tinymce\plugins\compat3x\img\icons.gif" />
+    <Content Include="tinymce\plugins\compat3x\img\items.gif" />
+    <Content Include="tinymce\plugins\compat3x\img\menu_arrow.gif" />
+    <Content Include="tinymce\plugins\compat3x\img\menu_check.gif" />
+    <Content Include="tinymce\plugins\compat3x\img\progress.gif" />
+    <Content Include="tinymce\plugins\compat3x\img\tabs.gif" />
+    <Content Include="tinymce\plugins\compat3x\plugin.js" />
+    <Content Include="tinymce\plugins\compat3x\plugin.min.js" />
+    <Content Include="tinymce\plugins\compat3x\tiny_mce_popup.js" />
+    <Content Include="tinymce\plugins\compat3x\utils\editable_selects.js" />
+    <Content Include="tinymce\plugins\compat3x\utils\form_utils.js" />
+    <Content Include="tinymce\plugins\compat3x\utils\mctabs.js" />
+    <Content Include="tinymce\plugins\compat3x\utils\validate.js" />
+    <Content Include="tinymce\plugins\contextmenu\plugin.js" />
+    <Content Include="tinymce\plugins\contextmenu\plugin.min.js" />
+    <Content Include="tinymce\plugins\directionality\plugin.js" />
+    <Content Include="tinymce\plugins\directionality\plugin.min.js" />
+    <Content Include="tinymce\plugins\emoticons\img\smiley-cool.gif" />
+    <Content Include="tinymce\plugins\emoticons\img\smiley-cry.gif" />
+    <Content Include="tinymce\plugins\emoticons\img\smiley-embarassed.gif" />
+    <Content Include="tinymce\plugins\emoticons\img\smiley-foot-in-mouth.gif" />
+    <Content Include="tinymce\plugins\emoticons\img\smiley-frown.gif" />
+    <Content Include="tinymce\plugins\emoticons\img\smiley-innocent.gif" />
+    <Content Include="tinymce\plugins\emoticons\img\smiley-kiss.gif" />
+    <Content Include="tinymce\plugins\emoticons\img\smiley-laughing.gif" />
+    <Content Include="tinymce\plugins\emoticons\img\smiley-money-mouth.gif" />
+    <Content Include="tinymce\plugins\emoticons\img\smiley-sealed.gif" />
+    <Content Include="tinymce\plugins\emoticons\img\smiley-smile.gif" />
+    <Content Include="tinymce\plugins\emoticons\img\smiley-surprised.gif" />
+    <Content Include="tinymce\plugins\emoticons\img\smiley-tongue-out.gif" />
+    <Content Include="tinymce\plugins\emoticons\img\smiley-undecided.gif" />
+    <Content Include="tinymce\plugins\emoticons\img\smiley-wink.gif" />
+    <Content Include="tinymce\plugins\emoticons\img\smiley-yell.gif" />
+    <Content Include="tinymce\plugins\emoticons\plugin.js" />
+    <Content Include="tinymce\plugins\emoticons\plugin.min.js" />
+    <Content Include="tinymce\plugins\example\dialog.html" />
+    <Content Include="tinymce\plugins\example\plugin.js" />
+    <Content Include="tinymce\plugins\example\plugin.min.js" />
+    <Content Include="tinymce\plugins\example_dependency\plugin.js" />
+    <Content Include="tinymce\plugins\example_dependency\plugin.min.js" />
+    <Content Include="tinymce\plugins\fullpage\plugin.js" />
+    <Content Include="tinymce\plugins\fullpage\plugin.min.js" />
+    <Content Include="tinymce\plugins\fullscreen\plugin.js" />
+    <Content Include="tinymce\plugins\fullscreen\plugin.min.js" />
+    <Content Include="tinymce\plugins\hr\plugin.js" />
+    <Content Include="tinymce\plugins\hr\plugin.min.js" />
+    <Content Include="tinymce\plugins\imagetools\config\bolt\atomic.js" />
+    <Content Include="tinymce\plugins\imagetools\config\bolt\browser.js" />
+    <Content Include="tinymce\plugins\imagetools\config\bolt\demo.js" />
+    <Content Include="tinymce\plugins\imagetools\config\bolt\prod.js" />
+    <Content Include="tinymce\plugins\imagetools\plugin.js" />
+    <Content Include="tinymce\plugins\imagetools\plugin.min.js" />
+    <Content Include="tinymce\plugins\imagetools\src\demo\html\demo.html" />
+    <Content Include="tinymce\plugins\imagetools\src\demo\js\Demo.js" />
+    <Content Include="tinymce\plugins\imagetools\src\main\js\CropRect.js" />
+    <Content Include="tinymce\plugins\imagetools\src\main\js\Dialog.js" />
+    <Content Include="tinymce\plugins\imagetools\src\main\js\ImagePanel.js" />
+    <Content Include="tinymce\plugins\imagetools\src\main\js\Plugin.js" />
+    <Content Include="tinymce\plugins\imagetools\src\main\js\UndoStack.js" />
+    <Content Include="tinymce\plugins\image\plugin.js" />
+    <Content Include="tinymce\plugins\image\plugin.min.js" />
+    <Content Include="tinymce\plugins\importcss\plugin.js" />
+    <Content Include="tinymce\plugins\importcss\plugin.min.js" />
+    <Content Include="tinymce\plugins\insertdatetime\plugin.js" />
+    <Content Include="tinymce\plugins\insertdatetime\plugin.min.js" />
+    <Content Include="tinymce\plugins\layer\plugin.js" />
+    <Content Include="tinymce\plugins\layer\plugin.min.js" />
+    <Content Include="tinymce\plugins\legacyoutput\plugin.js" />
+    <Content Include="tinymce\plugins\legacyoutput\plugin.min.js" />
+    <Content Include="tinymce\plugins\link\plugin.js" />
+    <Content Include="tinymce\plugins\link\plugin.min.js" />
+    <Content Include="tinymce\plugins\lists\plugin.js" />
+    <Content Include="tinymce\plugins\lists\plugin.min.js" />
+    <Content Include="tinymce\plugins\media\moxieplayer.swf" />
+    <Content Include="tinymce\plugins\media\plugin.js" />
+    <Content Include="tinymce\plugins\media\plugin.min.js" />
+    <Content Include="tinymce\plugins\nonbreaking\plugin.js" />
+    <Content Include="tinymce\plugins\nonbreaking\plugin.min.js" />
+    <Content Include="tinymce\plugins\noneditable\plugin.js" />
+    <Content Include="tinymce\plugins\noneditable\plugin.min.js" />
+    <Content Include="tinymce\plugins\pagebreak\plugin.js" />
+    <Content Include="tinymce\plugins\pagebreak\plugin.min.js" />
+    <Content Include="tinymce\plugins\paste\classes\Clipboard.js" />
+    <Content Include="tinymce\plugins\paste\classes\Plugin.js" />
+    <Content Include="tinymce\plugins\paste\classes\Quirks.js" />
+    <Content Include="tinymce\plugins\paste\classes\Utils.js" />
+    <Content Include="tinymce\plugins\paste\classes\WordFilter.js" />
+    <Content Include="tinymce\plugins\paste\plugin.dev.js" />
+    <Content Include="tinymce\plugins\paste\plugin.js" />
+    <Content Include="tinymce\plugins\paste\plugin.min.js" />
+    <Content Include="tinymce\plugins\preview\plugin.js" />
+    <Content Include="tinymce\plugins\preview\plugin.min.js" />
+    <Content Include="tinymce\plugins\print\plugin.js" />
+    <Content Include="tinymce\plugins\print\plugin.min.js" />
+    <Content Include="tinymce\plugins\save\plugin.js" />
+    <Content Include="tinymce\plugins\save\plugin.min.js" />
+    <Content Include="tinymce\plugins\searchreplace\plugin.js" />
+    <Content Include="tinymce\plugins\searchreplace\plugin.min.js" />
+    <Content Include="tinymce\plugins\spellchecker\classes\DomTextMatcher.js" />
+    <Content Include="tinymce\plugins\spellchecker\classes\Plugin.js" />
+    <Content Include="tinymce\plugins\spellchecker\plugin.dev.js" />
+    <Content Include="tinymce\plugins\spellchecker\plugin.js" />
+    <Content Include="tinymce\plugins\spellchecker\plugin.min.js" />
+    <Content Include="tinymce\plugins\tabfocus\plugin.js" />
+    <Content Include="tinymce\plugins\tabfocus\plugin.min.js" />
+    <Content Include="tinymce\plugins\table\classes\CellSelection.js" />
+    <Content Include="tinymce\plugins\table\classes\Dialogs.js" />
+    <Content Include="tinymce\plugins\table\classes\Plugin.js" />
+    <Content Include="tinymce\plugins\table\classes\Quirks.js" />
+    <Content Include="tinymce\plugins\table\classes\ResizeBars.js" />
+    <Content Include="tinymce\plugins\table\classes\TableGrid.js" />
+    <Content Include="tinymce\plugins\table\classes\Utils.js" />
+    <Content Include="tinymce\plugins\table\plugin.dev.js" />
+    <Content Include="tinymce\plugins\table\plugin.js" />
+    <Content Include="tinymce\plugins\table\plugin.min.js" />
+    <Content Include="tinymce\plugins\template\plugin.js" />
+    <Content Include="tinymce\plugins\template\plugin.min.js" />
+    <Content Include="tinymce\plugins\textcolor\plugin.js" />
+    <Content Include="tinymce\plugins\textcolor\plugin.min.js" />
+    <Content Include="tinymce\plugins\textpattern\plugin.js" />
+    <Content Include="tinymce\plugins\textpattern\plugin.min.js" />
+    <Content Include="tinymce\plugins\visualblocks\css\visualblocks.css" />
+    <Content Include="tinymce\plugins\visualblocks\img\address.gif" />
+    <Content Include="tinymce\plugins\visualblocks\img\article.gif" />
+    <Content Include="tinymce\plugins\visualblocks\img\aside.gif" />
+    <Content Include="tinymce\plugins\visualblocks\img\blockquote.gif" />
+    <Content Include="tinymce\plugins\visualblocks\img\div.gif" />
+    <Content Include="tinymce\plugins\visualblocks\img\dl.gif" />
+    <Content Include="tinymce\plugins\visualblocks\img\figure.gif" />
+    <Content Include="tinymce\plugins\visualblocks\img\h1.gif" />
+    <Content Include="tinymce\plugins\visualblocks\img\h2.gif" />
+    <Content Include="tinymce\plugins\visualblocks\img\h3.gif" />
+    <Content Include="tinymce\plugins\visualblocks\img\h4.gif" />
+    <Content Include="tinymce\plugins\visualblocks\img\h5.gif" />
+    <Content Include="tinymce\plugins\visualblocks\img\h6.gif" />
+    <Content Include="tinymce\plugins\visualblocks\img\hgroup.gif" />
+    <Content Include="tinymce\plugins\visualblocks\img\ol.gif" />
+    <Content Include="tinymce\plugins\visualblocks\img\p.gif" />
+    <Content Include="tinymce\plugins\visualblocks\img\pre.gif" />
+    <Content Include="tinymce\plugins\visualblocks\img\section.gif" />
+    <Content Include="tinymce\plugins\visualblocks\img\ul.gif" />
+    <Content Include="tinymce\plugins\visualblocks\plugin.js" />
+    <Content Include="tinymce\plugins\visualblocks\plugin.min.js" />
+    <Content Include="tinymce\plugins\visualchars\plugin.js" />
+    <Content Include="tinymce\plugins\visualchars\plugin.min.js" />
+    <Content Include="tinymce\plugins\wordcount\plugin.js" />
+    <Content Include="tinymce\plugins\wordcount\plugin.min.js" />
+    <Content Include="tinymce\skins\lightgray\content.inline.min.css" />
+    <Content Include="tinymce\skins\lightgray\content.min.css" />
+    <Content Include="tinymce\skins\lightgray\fonts\tinymce-small.svg" />
+    <Content Include="tinymce\skins\lightgray\fonts\tinymce.svg" />
+    <Content Include="tinymce\skins\lightgray\img\anchor.gif" />
+    <Content Include="tinymce\skins\lightgray\img\loader.gif" />
+    <Content Include="tinymce\skins\lightgray\img\object.gif" />
+    <Content Include="tinymce\skins\lightgray\img\trans.gif" />
+    <Content Include="tinymce\skins\lightgray\skin.ie7.min.css" />
+    <Content Include="tinymce\skins\lightgray\skin.min.css" />
+    <Content Include="tinymce\themes\modern\theme.js" />
+    <Content Include="tinymce\themes\modern\theme.min.js" />
+    <Content Include="tinymce\tinymce.dev.js" />
+    <Content Include="tinymce\tinymce.js" />
+    <Content Include="tinymce\tinymce.min.js" />
+    <Content Include="Web.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="apicontrollers\DataController.cs" />
+    <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Dal\Models.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <TypeScriptCompile Include="app\app.component.ts" />
+    <TypeScriptCompile Include="app\dal\models.ts" />
+    <TypeScriptCompile Include="app\main.ts" />
+    <TypeScriptCompile Include="app\services\services.ts" />
+    <TypeScriptCompile Include="typings\es6-shim.d.ts" />
+    <TypeScriptCompile Include="typings\main.d.ts" />
+    <TypeScriptCompile Include="typings\node.d.ts" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
+  </ItemGroup>
+  <ItemGroup />
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|AnyCPU'">
+    <TypeScriptTarget>ES5</TypeScriptTarget>
+    <TypeScriptJSXEmit>None</TypeScriptJSXEmit>
+    <TypeScriptCompileOnSaveEnabled>True</TypeScriptCompileOnSaveEnabled>
+    <TypeScriptNoImplicitAny>False</TypeScriptNoImplicitAny>
+    <TypeScriptModuleKind>CommonJS</TypeScriptModuleKind>
+    <TypeScriptRemoveComments>False</TypeScriptRemoveComments>
+    <TypeScriptOutFile />
+    <TypeScriptOutDir />
+    <TypeScriptGeneratesDeclarations>False</TypeScriptGeneratesDeclarations>
+    <TypeScriptNoEmitOnError>True</TypeScriptNoEmitOnError>
+    <TypeScriptSourceMap>True</TypeScriptSourceMap>
+    <TypeScriptMapRoot />
+    <TypeScriptSourceRoot />
+    <TypeScriptEmitDecoratorMetadata>true</TypeScriptEmitDecoratorMetadata>
+    <TypeScriptExperimentalDecorators>true</TypeScriptExperimentalDecorators>
+  </PropertyGroup>
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets')" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>48256</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:48256/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props'))" />
+    <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
+  </Target>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
