@@ -1,0 +1,39 @@
+﻿
+ <form role="form" *ngIf="active" (ngSubmit)="updateLinks()" #theForm="ngForm" class="form">
+    <div [class.disabled]="pending" *ngFor="#item of links" [class.deleted-menu-item]="item.ToDelete" class="bottom-margin-15 menu-item panel panel-default">
+        <div id="" class="panel-body">
+            <input type="hidden" [(ngModel)]="item.ID" />
+            <div [class.disabled]="item.ToDelete" id="foo" class="form-group">
+                <label for="Text_English">Text_Heb</label>
+                <input type="text" class="form-control" required
+                       [(ngModel)]="item.Text_Heb" />
+            </div>
+            <div [class.disabled]="item.ToDelete" id="" class="form-group">
+                <label for="Text_Hebrew">Address_Heb</label>
+                <input type="text" class="form-control" required
+                       [(ngModel)]="item.Address_Heb" />
+            </div>
+            <div [class.disabled]="item.ToDelete" id="" class="form-group">
+                <label for="Order">Text_Eng</label>
+                <input type="text" class="form-control" required
+                       [(ngModel)]="item.Text_Eng" />
+            </div>
+            <div [class.disabled]="item.ToDelete" id="" class="form-group">
+                <label for="IsDefault">Address_Eng</label>
+                <input type="text" class="form-control"
+                       [(ngModel)]="item.Address_Eng" />
+            </div>
+            <div [class.disabled]="item.ToDelete" id="" class="form-group">
+                <label for="IsDefault">Order</label>
+                <input type="number" class="form-control"
+                       [(ngModel)]="item.Order" />
+            </div>
+            <button type="button" class="btn btn-danger" (click)="item.ToDelete=!item.ToDelete"><span [hidden]="item.ToDelete"> delete item</span><span [hidden]="!item.ToDelete">oops...</span></button>
+        </div>
+    </div>
+    <button type="button" (click)="addNew()" [disabled]="!theForm.form.valid">Add new Item</button>
+    <button id="submit-button" type="submit" [disabled]="!theForm.form.valid">Save changes</button>
+    <span class="text-warning" [hidden]="HideProblem || pending">Problem-plz try again leter</span>
+    <span class="text-success " [hidden]="HideSuccess || pending">Done!</span>
+</form>
+

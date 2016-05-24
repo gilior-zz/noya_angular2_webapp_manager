@@ -1,0 +1,39 @@
+﻿
+
+<form [class.disabled]="pending" *ngIf="active" (ngSubmit)="updateMenuItems()" #theForm="ngForm" class="form-inline">
+    <div *ngFor="#item of menuItems" [class.deleted-menu-item]="item.ToDelete" class="bottom-margin-15 menu-item panel panel-default">
+        <div id="" class="panel-body">
+            <input type="hidden" [(ngModel)]="item.ID" />
+            <div [class.disabled]="item.ToDelete" id="" class="form-group">
+                <label for="Text_English">Text_English</label>
+                <input type="text" class="form-control" required
+                       [(ngModel)]="item.Text_English" />
+            </div>
+            <div [class.disabled]="item.ToDelete" id="" class="form-group">
+                <label for="Text_Hebrew">Text_Hebrew</label>
+                <input type="text" class="form-control" required
+                       [(ngModel)]="item.Text_Hebrew" />
+            </div>
+            <div [class.disabled]="item.ToDelete" id="" class="form-group">
+                <label for="Order">Order</label>
+                <input type="number" class="form-control" required
+                       [(ngModel)]="item.Order" />
+            </div>
+            <div [class.disabled]="item.ToDelete" id="" class="form-group">
+                <label for="IsDefault">IsDefault</label>
+                <input type="checkbox" class="form-control"
+                       [(ngModel)]="item.IsDefault" />
+            </div>
+            <button type="button" class="btn btn-danger" (click)="item.ToDelete=!item.ToDelete"><span [hidden]="item.ToDelete"> delete item</span><span [hidden]="!item.ToDelete">oops...</span></button>
+        </div>
+    </div>
+    <button type="submit" [disabled]="!theForm.form.valid">Save changes</button>
+    <span class="text-warning" [hidden]="HideProblem || pending">Problem-plz try again leter</span>
+    <span class="text-success" [hidden]="HideSuccess || pending">Done!</span>
+</form>
+
+ HideProblem:{{HideProblem}}
+    HideSuccess: {{HideSuccess}}
+    pending:{{pending}}
+    active:{{active}}
+

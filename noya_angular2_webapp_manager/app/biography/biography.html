@@ -1,0 +1,40 @@
+﻿
+<form role="form" *ngIf="active" (ngSubmit)="updateCVs()" #theForm="ngForm" class="form">
+    <div *ngFor="#cv of cvs" class="panel panel-default">
+        <div class="panel-body bottom-margin-15">
+            <input type="hidden" [(ngModel)]="cv.ID" />
+            <button (click)="alterText('align_left')" title="align-left" type="button" class="btn btn-default" aria-label="Left Align">
+                <span class="glyphicon glyphicon-align-left" aria-hidden="true"></span>
+            </button>
+            <button (click)="alterText('align_right')" title="align-right" type="button" class="btn btn-default" aria-label="Right Align">
+                <span class="glyphicon glyphicon-align-right" aria-hidden="true"></span>
+            </button>
+            <button (click)="alterText('align_center')" title="align-center" type="button" class="btn btn-default" aria-label="Center Align">
+                <span class="glyphicon glyphicon-align-center" aria-hidden="true"></span>
+            </button>
+            <button (click)="alterText('align_justify')" title="align-justify" type="button" class="btn btn-default" aria-label="Justify Align">
+                <span class="glyphicon glyphicon-align-justify" aria-hidden="true"></span>
+            </button>
+            <button (click)="alterText('bold')" title="bold" type="button" class="btn btn-default" aria-label="bold">
+                <span class="glyphicon glyphicon-bold" aria-hidden="true"></span>
+            </button>
+            <!--<div id="heb" class="textarea" contenteditable [innerHTML]="cv.Heb"></div>-->
+            <ckeditor [(ngModel)]="cv.Heb"></ckeditor>
+        </div>
+        <div class="panel-body bottom-margin-15">
+            <input type="hidden" [(ngModel)]="cv.ID" />
+            <!--<div id="eng" class="textarea" contenteditable [innerHTML]="cv.Eng"></div>-->
+            <ckeditor [(ngModel)]="cv.Eng"></ckeditor>
+        </div>
+    </div>
+    <button id="submit-button" type="submit" [disabled]="!theForm.form.valid">Save changes</button>
+    <span class="text-warning" [hidden]="HideProblem || pending">Problem-plz try again leter</span>
+    <span class="text-success " [hidden]="HideSuccess || pending">Done!</span>
+
+</form>
+
+
+
+
+
+

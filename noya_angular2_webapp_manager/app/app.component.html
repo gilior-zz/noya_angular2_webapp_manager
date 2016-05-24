@@ -1,5 +1,8 @@
-﻿<h1>hello</h1>
+﻿<ul class="nav nav-pills">
+    <li role="presentation"><a [routerLink]="['Menu']">Menu</a></li>
+    <li role="presentation"><a [routerLink]="['Biography']">Biography</a></li>
+    <li role="presentation"><a [routerLink]="['Links', { goToBottom: true }]">Links</a></li>
+</ul>
 
-<!--<form method="post">
-    <textarea id="mytextarea">Hello, World!</textarea>
-</form>-->
+<div id="" class="container"><router-outlet></router-outlet></div>
+

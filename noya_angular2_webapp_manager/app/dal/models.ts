@@ -3,6 +3,8 @@ export interface DataRequest {
 
 }
 
+
+
 export interface UpdatesRsponse extends DataResponse {
     Updates: Update[];
 }
@@ -76,6 +78,7 @@ export interface CV {
     Heb: string;
     Eng: string;
     TimeStamp: Date;
+    ToDelete: boolean;
 }
 
 
@@ -107,6 +110,25 @@ export interface LinksResponse extends DataResponse {
     Links: Link[];
 }
 
+export enum UpdateStatus { Success, Fail }
+
+export interface UpdateResponse {
+    UpdateStatus: UpdateStatus;
+}
+
+export interface UpdateDataRequest { }
+
+export interface UpdateMenuRequest extends UpdateDataRequest {
+    MenuItems: MenuItem[];
+}
+
+export interface UpdateLinksRequest extends UpdateDataRequest {
+    Links: Link[];
+}
+
+export interface UpdateCVRequest extends UpdateDataRequest {
+    CVs: CV[];
+}
 
 
 
@@ -118,6 +140,7 @@ export interface Link {
     Address_Eng: string;
     Order: number
     TimeStamp: Date;
+    toDelete: boolean
 }
 
 export interface MenuItem {
@@ -126,6 +149,8 @@ export interface MenuItem {
     Text_English: string;
     Text_Hebrew: string;
     isDefault: boolean;
+    ToDelete: boolean;
+    Name: string;
 }
 
 export interface DataError {

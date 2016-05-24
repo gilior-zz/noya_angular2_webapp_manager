@@ -86,8 +86,64 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="app\app.component.html" />
+    <Content Include="app\biography\biography.html" />
+    <Content Include="app\links\link.editor.html" />
+    <Content Include="app\links\links.html" />
+    <Content Include="app\menu\menu.html" />
+    <Content Include="Content\bootstrap-theme.css" />
+    <Content Include="Content\bootstrap-theme.min.css" />
+    <Content Include="Content\bootstrap.css" />
+    <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\style.css">
+      <DependentUpon>style.less</DependentUpon>
+    </Content>
+    <Content Include="Content\style.min.css">
+      <DependentUpon>style.css</DependentUpon>
+    </Content>
+    <Content Include="Content\tether\tether-theme-arrows-dark.css" />
+    <Content Include="Content\tether\tether-theme-arrows-dark.min.css" />
+    <Content Include="Content\tether\tether-theme-arrows.css" />
+    <Content Include="Content\tether\tether-theme-arrows.min.css" />
+    <Content Include="Content\tether\tether-theme-basic.css" />
+    <Content Include="Content\tether\tether-theme-basic.min.css" />
+    <Content Include="Content\tether\tether.css" />
+    <Content Include="Content\tether\tether.min.css" />
+    <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
+    <Content Include="lib\angular2-polyfills.js" />
+    <Content Include="lib\angular2.dev.js" />
+    <Content Include="lib\CKEditor.js" />
+    <Content Include="lib\es6-shim.min.js" />
+    <Content Include="lib\http.dev.js" />
+    <Content Include="lib\jquery-scrollto.js" />
+    <Content Include="lib\router.dev.js" />
+    <Content Include="lib\Rx.js" />
+    <Content Include="lib\shims_for_IE.js" />
+    <Content Include="lib\system-polyfills.js" />
+    <Content Include="lib\system.src.js" />
+    <Content Include="lib\system.text.js" />
     <Content Include="packages.config" />
+    <Content Include="Content\style.less" />
+    <None Include="compilerconfig.json" />
+    <None Include="compilerconfig.json.defaults">
+      <DependentUpon>compilerconfig.json</DependentUpon>
+    </None>
+    <Content Include="fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Content\bootstrap.min.css.map" />
+    <Content Include="Content\bootstrap.css.map" />
+    <Content Include="Content\bootstrap-theme.min.css.map" />
+    <Content Include="Content\bootstrap-theme.css.map" />
+    <Content Include="lib\CKEditor.es6" />
+    <None Include="Scripts\jquery-2.0.0.intellisense.js" />
+    <Content Include="Scripts\bootstrap.js" />
+    <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Scripts\jquery-2.0.0.js" />
+    <Content Include="Scripts\jquery-2.0.0.min.js" />
+    <Content Include="Scripts\tether\tether.js" />
+    <Content Include="Scripts\tether\tether.min.js" />
     <Content Include="tinymce\langs\readme.md" />
     <Content Include="tinymce\skins\lightgray\AbsoluteLayout.less" />
     <Content Include="tinymce\skins\lightgray\Animations.less" />
@@ -153,6 +209,8 @@
     <Content Include="tinymce\skins\lightgray\ToolTip.less" />
     <Content Include="tinymce\skins\lightgray\Variables.less" />
     <Content Include="tinymce\skins\lightgray\Window.less" />
+    <Content Include="package.json" />
+    <Content Include="Scripts\jquery-2.0.0.min.map" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -162,17 +220,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="index.html" />
-    <Content Include="lib\angular2-polyfills.js" />
-    <Content Include="lib\angular2.dev.js" />
-    <Content Include="lib\es6-shim.min.js" />
-    <Content Include="lib\http.dev.js" />
-    <Content Include="lib\jquery-scrollto.js" />
-    <Content Include="lib\router.dev.js" />
-    <Content Include="lib\Rx.js" />
-    <Content Include="lib\shims_for_IE.js" />
-    <Content Include="lib\system-polyfills.js" />
-    <Content Include="lib\system.src.js" />
-    <Content Include="lib\system.text.js" />
     <Content Include="tinymce\classes\AddOnManager.js" />
     <Content Include="tinymce\classes\caret\CaretBookmark.js" />
     <Content Include="tinymce\classes\caret\CaretCandidate.js" />
@@ -530,9 +577,14 @@
   </ItemGroup>
   <ItemGroup>
     <TypeScriptCompile Include="app\app.component.ts" />
+    <TypeScriptCompile Include="app\biography\biography.ts" />
     <TypeScriptCompile Include="app\dal\models.ts" />
+    <TypeScriptCompile Include="app\links\link.editor.ts" />
+    <TypeScriptCompile Include="app\links\links.ts" />
     <TypeScriptCompile Include="app\main.ts" />
+    <TypeScriptCompile Include="app\menu\menu.ts" />
     <TypeScriptCompile Include="app\services\services.ts" />
+    <TypeScriptCompile Include="Scripts\typings\jquery\jquery.d.ts" />
     <TypeScriptCompile Include="typings\es6-shim.d.ts" />
     <TypeScriptCompile Include="typings\main.d.ts" />
     <TypeScriptCompile Include="typings\node.d.ts" />

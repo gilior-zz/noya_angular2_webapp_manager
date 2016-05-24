@@ -14,10 +14,146 @@ namespace noya_angular2_webapp_manager.apicontrollers
     public class DataController : ApiController
     {
         [AcceptVerbs("Post")]
+        public UpdateResponse UpdateMenuItems(dynamic request)
+        {
+            var dataRequest = this.ConvertStupidArgumentToNormalUpdateRequset<UpdateMenuRequest>(request) as UpdateMenuRequest;
+            using (SqlConnection connection = initializeTestConnection())
+            {
+                connection.Open();
+                SqlCommand command = connection.CreateCommand();
+                SqlTransaction transaction;
+                transaction = connection.BeginTransaction("SampleTransaction");
+                command.Connection = connection;
+                command.Transaction = transaction;
+                try
+                {
+                    foreach (var item in dataRequest.MenuItems)
+                    {
+                        command.Parameters.Clear();
+                        command.CommandText = "MenuItemsUpdate";
+                        command.CommandType = System.Data.CommandType.StoredProcedure;
+                        command.Parameters.AddWithValue("@ID", item.ID);
+                        command.Parameters.AddWithValue("@Text_English", item.Text_English);
+                        command.Parameters.AddWithValue("@Text_Hebrew", item.Text_Hebrew);
+                        command.Parameters.AddWithValue("@Order", item.Order);
+                        command.Parameters.AddWithValue("@IsDefault", item.isDefault);
+                        command.Parameters.AddWithValue("@ToDelete", item.ToDelete);
+                        command.ExecuteNonQuery();
+                    }
+                    transaction.Commit();
+                    return new UpdateResponse() { UpdateStatus = UpdateStatus.Success };
+                }
+                catch (Exception ex)
+                {
+                    try
+                    {
+                        transaction.Rollback();
+                    }
+                    catch (Exception ex2)
+                    {
+                        return new UpdateResponse() { UpdateStatus = UpdateStatus.Fail };
+                    }
+                    return new UpdateResponse() { UpdateStatus = UpdateStatus.Fail };
+                }
+            }
+        }
+
+        [AcceptVerbs("Post")]
+        public UpdateResponse UpdateLinks(dynamic request)
+        {
+            var dataRequest = this.ConvertStupidArgumentToNormalUpdateRequset<UpdateLinksRequest>(request) as UpdateLinksRequest;
+            using (SqlConnection connection = initializeTestConnection())
+            {
+                connection.Open();
+                SqlCommand command = connection.CreateCommand();
+                SqlTransaction transaction;
+                transaction = connection.BeginTransaction("SampleTransaction");
+                command.Connection = connection;
+                command.Transaction = transaction;
+                try
+                {
+                    foreach (var item in dataRequest.Links)
+                    {
+                        command.Parameters.Clear();
+                        command.CommandText = "LinksUpdate";
+                        command.CommandType = System.Data.CommandType.StoredProcedure;
+                        command.Parameters.AddWithValue("@ID", item.ID);
+                        command.Parameters.AddWithValue("@Address_Eng", item.Address_Eng);
+                        command.Parameters.AddWithValue("@Address_Heb", item.Address_Heb);
+                        command.Parameters.AddWithValue("@Order", item.Order);
+                        command.Parameters.AddWithValue("@Text_Eng", item.Text_Eng);
+                        command.Parameters.AddWithValue("@Text_Heb", item.Text_Heb);
+                        command.Parameters.AddWithValue("@ToDelete", item.ToDelete);
+                        command.ExecuteNonQuery();
+                    }
+                    transaction.Commit();
+                    return new UpdateResponse() { UpdateStatus = UpdateStatus.Success };
+                }
+                catch (Exception ex)
+                {
+                    try
+                    {
+                        transaction.Rollback();
+                    }
+                    catch (Exception ex2)
+                    {
+                        return new UpdateResponse() { UpdateStatus = UpdateStatus.Fail };
+                    }
+                    return new UpdateResponse() { UpdateStatus = UpdateStatus.Fail };
+                }
+            }
+        }
+
+        [AcceptVerbs("Post")]
+        public UpdateResponse UpdateBiography(dynamic request)
+        {
+            var updateRequest = this.ConvertStupidArgumentToNormalUpdateRequset<UpdateCVRequest>(request) as UpdateCVRequest;
+            using (SqlConnection connection = initializeTestConnection())
+            {
+                connection.Open();
+                SqlCommand command = connection.CreateCommand();
+                SqlTransaction transaction;
+                transaction = connection.BeginTransaction("SampleTransaction");
+                command.Connection = connection;
+                command.Transaction = transaction;
+                try
+                {
+                    foreach (var item in updateRequest.CVs)
+                    {
+                        command.Parameters.Clear();
+                        command.CommandText = "CVUpdate";
+                        command.CommandType = System.Data.CommandType.StoredProcedure;
+                        command.Parameters.AddWithValue("@ID", item.ID);
+                        command.Parameters.AddWithValue("@Heb", item.Heb);
+                        command.Parameters.AddWithValue("@Eng", item.Eng);
+                        command.Parameters.AddWithValue("@ToDelete", item.ToDelete);
+                        command.ExecuteNonQuery();
+                    }
+                    transaction.Commit();
+                    return new UpdateResponse() { UpdateStatus = UpdateStatus.Success };
+                }
+                catch (Exception ex)
+                {
+                    try
+                    {
+                        transaction.Rollback();
+                    }
+                    catch (Exception ex2)
+                    {
+                        return new UpdateResponse() { UpdateStatus = UpdateStatus.Fail };
+                    }
+                    return new UpdateResponse() { UpdateStatus = UpdateStatus.Fail };
+                }
+            }
+        }
+
+
+        [AcceptVerbs("Post")]
         public MenuResponse GetMenuItems(dynamic request)
         {
-            var dataRequest = this.ConvertStupidArgumentToNormalRequset<DataRequest>(request);
-            SqlConnection connection = initializeConnection();
+            var dataRequest = this.ConvertStupidArgumentToNormalDataRequset<DataRequest>(request);
+
+            SqlConnection connection = initializeTestConnection();
             var res = new MenuResponse();
             var menuItemsList = new List<MenuItem>();
             try
@@ -34,7 +170,8 @@ namespace noya_angular2_webapp_manager.apicontrollers
                         string text_English = reader["Text_English"].ToString();
                         string Text_Hebrew = reader["Text_Hebrew"].ToString();
                         bool isDefault = bool.Parse(reader["IsDefault"].ToString());
-                        var item = new MenuItem(id, order, text_English, Text_Hebrew, isDefault);
+                        string name = reader["Name"].ToString();
+                        var item = new MenuItem(id, order, text_English, Text_Hebrew, isDefault, name);
                         menuItemsList.Add(item);
                     }
                 }
@@ -52,15 +189,13 @@ namespace noya_angular2_webapp_manager.apicontrollers
         [AcceptVerbs("Post")]
         public LinksResponse GetLinks(dynamic request)
         {
-            var dataRequest = this.ConvertStupidArgumentToNormalRequset<DataRequest>(request);
+            var dataRequest = this.ConvertStupidArgumentToNormalDataRequset<DataRequest>(request);
             LinksResponse res = new LinksResponse();
-            SqlConnection connection = initializeConnection();
+            SqlConnection connection = initializeTestConnection();
             try
             {
                 connection.Open();
-                SqlCommand cmd = new SqlCommand("LinksSelect", connection);
-                cmd.Parameters.AddWithValue("@txt_lang", "Text_Eng");
-                cmd.Parameters.AddWithValue("@add_lang", "Address_Eng");
+                SqlCommand cmd = new SqlCommand("LinksSelect_Manager", connection);
                 cmd.CommandType = System.Data.CommandType.StoredProcedure;
                 List<Link> linksList = new List<Link>();
                 using (SqlDataReader reader = cmd.ExecuteReader())
@@ -73,8 +208,9 @@ namespace noya_angular2_webapp_manager.apicontrollers
                         var text_eng = reader["Text_Eng"].ToString();
                         var address_eng = reader["Address_Eng"].ToString();
                         var order = Convert.ToDouble(reader["Order"].ToString());
-                        var timestamp = Convert.ToDateTime(reader["Date"].ToString());
-                        var link = new Link(id, text_heb, address_heb, text_eng, address_eng, order, timestamp);
+                        var timestamp = Convert.ToDateTime(reader["TimeStamp"].ToString());
+
+                        var link = new Link(id, text_heb, address_heb, text_eng, address_eng, order, timestamp, false);
                         linksList.Add(link);
                     }
                 }
@@ -92,8 +228,8 @@ namespace noya_angular2_webapp_manager.apicontrollers
         public UpdateRsponse GetUpdates(object request)
         {
 
-            var calendarRequest = this.ConvertStupidArgumentToNormalRequset<DataRequest>(request);
-            SqlConnection con = initializeConnection();
+            var calendarRequest = this.ConvertStupidArgumentToNormalDataRequset<DataRequest>(request);
+            SqlConnection con = initializeTestConnection();
             try
             {
                 con.Open();
@@ -129,8 +265,8 @@ namespace noya_angular2_webapp_manager.apicontrollers
         public PressResponse GetPress(object request)
         {
 
-            var calendarRequest = this.ConvertStupidArgumentToNormalRequset<DataRequest>(request);
-            SqlConnection con = initializeConnection();
+            var calendarRequest = this.ConvertStupidArgumentToNormalDataRequset<DataRequest>(request);
+            SqlConnection con = initializeTestConnection();
             try
             {
                 con.Open();
@@ -165,8 +301,8 @@ namespace noya_angular2_webapp_manager.apicontrollers
         [AcceptVerbs("Post")]
         public CalendarResponse GetCalendar(object request)
         {
-            var calendarRequest = this.ConvertStupidArgumentToNormalRequset<CalendarRequset>(request);
-            SqlConnection con = initializeConnection();
+            var calendarRequest = this.ConvertStupidArgumentToNormalDataRequset<CalendarRequset>(request);
+            SqlConnection con = initializeTestConnection();
             try
             {
                 con.Open();
@@ -197,9 +333,9 @@ namespace noya_angular2_webapp_manager.apicontrollers
             }
         }
 
-        private static SqlConnection initializeConnection()
+        private static SqlConnection initializeTestConnection()
         {
-            SqlConnection connection = new SqlConnection(ConfigurationManager.ConnectionStrings["noyaDB"].ConnectionString);
+            SqlConnection connection = new SqlConnection(ConfigurationManager.ConnectionStrings["testDB"].ConnectionString);
 
             return connection;
         }
@@ -208,7 +344,7 @@ namespace noya_angular2_webapp_manager.apicontrollers
         public ProgramsResponse GetPrograms(DataRequest request)
         {
 
-            SqlConnection connection = initializeConnection();
+            SqlConnection connection = initializeTestConnection();
             try
             {
                 connection.Open();
@@ -242,30 +378,31 @@ namespace noya_angular2_webapp_manager.apicontrollers
         }
 
         [AcceptVerbs("Post")]
-        public CVResponse GetCV(DataRequest request)
+        public CVResponse GetCV(dynamic request)
         {
-
-            SqlConnection connection = initializeConnection();
+            var dataRequest = this.ConvertStupidArgumentToNormalDataRequset<DataRequest>(request);
+            CVResponse res = new CVResponse();
+            SqlConnection connection = initializeTestConnection();
             try
             {
                 connection.Open();
-                SqlCommand cmd = new SqlCommand("CVSelect", connection);
+                SqlCommand cmd = new SqlCommand("CVSelect_Manager", connection);
                 cmd.CommandType = System.Data.CommandType.StoredProcedure;
-                cmd.Parameters.AddWithValue("@lang", "Eng");
-                List<CV> cvs = new List<CV>();
+                List<CV> cvSList = new List<CV>();
                 using (SqlDataReader reader = cmd.ExecuteReader())
                 {
                     while (reader.Read())
                     {
                         CV cv = new CV();
-                        cv.ID = Convert.ToInt32(reader["ID"].ToString());
                         cv.Eng = reader["Eng"].ToString();
                         cv.Heb = reader["Heb"].ToString();
+                        cv.ID = Convert.ToInt32(reader["ID"].ToString());
                         cv.TimeStamp = Convert.ToDateTime(reader["TimeStamp"].ToString());
-                        cvs.Add(cv);
+                        cvSList.Add(cv);
                     }
                 }
-                return new CVResponse() { CVs = cvs.ToArray() };
+                res.CVs = cvSList.ToArray();
+                return res;
             }
             finally
             {
@@ -278,9 +415,9 @@ namespace noya_angular2_webapp_manager.apicontrollers
         public ImageGalleryResponse GetImages(object request)
         {
 
-            ImageGalleryRequest imageGalleryRequest = this.ConvertStupidArgumentToNormalRequset<ImageGalleryRequest>(request);
+            ImageGalleryRequest imageGalleryRequest = this.ConvertStupidArgumentToNormalDataRequset<ImageGalleryRequest>(request);
             ImageGalleryItem item = null;
-            SqlConnection con = initializeConnection();
+            SqlConnection con = initializeTestConnection();
             try
             {
                 con.Open();
@@ -314,7 +451,16 @@ namespace noya_angular2_webapp_manager.apicontrollers
                 throw;
             }
         }
-        private T ConvertStupidArgumentToNormalRequset<T>(object request) where T : DataRequest
+
+
+        private T ConvertStupidArgumentToNormalDataRequset<T>(object request) where T : DataRequest
+        {
+            JObject jObject = JObject.Parse(request.ToString());
+            var parsed = jObject.First.FirstOrDefault().ToObject<T>();
+            return parsed;
+        }
+
+        private T ConvertStupidArgumentToNormalUpdateRequset<T>(object request) where T : UpdateDataRequest
         {
             JObject jObject = JObject.Parse(request.ToString());
             var parsed = jObject.First.FirstOrDefault().ToObject<T>();

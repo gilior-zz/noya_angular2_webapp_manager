@@ -1,18 +1,23 @@
-﻿<!DOCTYPE html>
-<html>
+﻿<html>
 <head>
-    <title></title>
-    <meta charset="utf-8" />
+    <base href="/" />
+    <title>web site manager</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
 </head>
+<!-- 3. Display the application -->
 <body>
 
-    <my-app></my-app>
+    <my-app>Loading...</my-app>
+
     <!-- #region  angular-->
-    <script src="lib/system.src.js"></script>
-    <script src="lib/Rx.js"></script>
-    <script src="lib/angular2-polyfills.js"></script>
+   
+    <script src="lib/system.src.js"></script> 
+    <script src="lib/Rx.js"></script>  
+    <script src="lib/angular2-polyfills.js"></script>   
     <script src="lib/angular2.dev.js"></script>
+    <script src="lib/CKEditor.js"></script>
     <script src="lib/router.dev.js"></script>
     <script src="lib/http.dev.js"></script>
     <!-- #endregion angular-->
@@ -35,8 +40,15 @@
             .then(null, console.error.bind(console));
     </script>
 
-
-
-
+    <!-- #region bootstrap -->
+    <script src="Scripts/jquery-2.0.0.min.js"></script>
+    <script src="Scripts/tether/tether.min.js"></script>
+    <script src="Scripts/bootstrap.min.js"></script>
+    <link href="Content/bootstrap.min.css" rel="stylesheet" />
+    <!-- #endregion bootstrap-->
+    <!-- #region custom-style -->
+    <link href="Content/style.min.css" rel="stylesheet" />
+    <!-- #endregion  custom-style-->
+   
 </body>
 </html>
