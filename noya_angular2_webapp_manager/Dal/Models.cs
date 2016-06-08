@@ -17,6 +17,16 @@ namespace noya_angular2_webapp_manager.Dal
         public MenuItem[] MenuItems { get; set; }
 
     }
+    public class UpdateProgramsRequest : UpdateDataRequest
+    {
+        public Program[] Programs { get; set; }
+
+    }
+    public class UpdateCalendarRequest : UpdateDataRequest
+    {
+        public CalendarItem[] CalendarItems { get; set; }
+
+    }
     public class UpdateLinksRequest : UpdateDataRequest
     {
         public Link[] Links { get; set; }
@@ -115,6 +125,7 @@ namespace noya_angular2_webapp_manager.Dal
         public string Eng { get; set; }
         public DateTime TimeStamp { get; set; }
         public double Order { get; set; }
+        public bool ToDelete { get; set; }
 
     }
 
@@ -147,7 +158,9 @@ namespace noya_angular2_webapp_manager.Dal
         public DateTime TimeStamp { get; set; }
 
         public DateTime DataDate { get; set; }
+        public string DataDateString { get; set; }
         public int ID { get; set; }
+        public bool ToDelete { get; set; }
     }
 
     public class CV

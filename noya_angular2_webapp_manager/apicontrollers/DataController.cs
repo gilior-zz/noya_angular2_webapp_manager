@@ -13,6 +13,98 @@ namespace noya_angular2_webapp_manager.apicontrollers
 {
     public class DataController : ApiController
     {
+
+        [AcceptVerbs("Post")]
+        public UpdateResponse UpdatePrograms(dynamic request)
+        {
+            var dataRequest = this.ConvertStupidArgumentToNormalUpdateRequset<UpdateProgramsRequest>(request) as UpdateProgramsRequest;
+            using (SqlConnection connection = initializeTestConnection())
+            {
+                connection.Open();
+                SqlCommand command = connection.CreateCommand();
+                SqlTransaction transaction;
+                transaction = connection.BeginTransaction("SampleTransaction");
+                command.Connection = connection;
+                command.Transaction = transaction;
+                try
+                {
+                    foreach (var item in dataRequest.Programs)
+                    {
+                        command.Parameters.Clear();
+                        command.CommandText = "ProgramsUpdate";
+                        command.CommandType = System.Data.CommandType.StoredProcedure;
+
+                        command.Parameters.AddWithValue("@ID", item.ID);
+                        command.Parameters.AddWithValue("@Name", item.Name);
+                        command.Parameters.AddWithValue("@Eng", item.Eng);
+                        command.Parameters.AddWithValue("@Heb", item.Heb);
+                        command.Parameters.AddWithValue("@Order", item.Order);
+                        command.Parameters.AddWithValue("@ToDelete", item.ToDelete);
+                        command.ExecuteNonQuery();
+                    }
+                    transaction.Commit();
+                    return new UpdateResponse() { UpdateStatus = UpdateStatus.Success };
+                }
+                catch (Exception ex)
+                {
+                    try
+                    {
+                        transaction.Rollback();
+                    }
+                    catch (Exception ex2)
+                    {
+                        return new UpdateResponse() { UpdateStatus = UpdateStatus.Fail };
+                    }
+                    return new UpdateResponse() { UpdateStatus = UpdateStatus.Fail };
+                }
+            }
+        }
+
+        [AcceptVerbs("Post")]
+        public UpdateResponse UpdateCalendarItems(dynamic request)
+        {
+            var dataRequest = this.ConvertStupidArgumentToNormalUpdateRequset<UpdateCalendarRequest>(request) as UpdateCalendarRequest;
+            using (SqlConnection connection = initializeTestConnection())
+            {
+                connection.Open();
+                SqlCommand command = connection.CreateCommand();
+                SqlTransaction transaction;
+                transaction = connection.BeginTransaction("SampleTransaction");
+                command.Connection = connection;
+                command.Transaction = transaction;
+                try
+                {
+                    foreach (var item in dataRequest.CalendarItems)
+                    {
+                        command.Parameters.Clear();
+                        command.CommandText = "CalendarUpdate";
+                        command.CommandType = System.Data.CommandType.StoredProcedure;
+
+                        command.Parameters.AddWithValue("@ID", item.ID);
+                        command.Parameters.AddWithValue("@DataDate", item.DataDate);
+                        command.Parameters.AddWithValue("@Text_Eng", item.Text_Eng);
+                        command.Parameters.AddWithValue("@Text_Heb", item.Text_Heb);
+                        command.Parameters.AddWithValue("@Visible", item.Visible);
+                        command.Parameters.AddWithValue("@ToDelete", item.ToDelete);
+                        command.ExecuteNonQuery();
+                    }
+                    transaction.Commit();
+                    return new UpdateResponse() { UpdateStatus = UpdateStatus.Success };
+                }
+                catch (Exception ex)
+                {
+                    try
+                    {
+                        transaction.Rollback();
+                    }
+                    catch (Exception ex2)
+                    {
+                        return new UpdateResponse() { UpdateStatus = UpdateStatus.Fail };
+                    }
+                    return new UpdateResponse() { UpdateStatus = UpdateStatus.Fail };
+                }
+            }
+        }
         [AcceptVerbs("Post")]
         public UpdateResponse UpdateMenuItems(dynamic request)
         {
@@ -146,6 +238,8 @@ namespace noya_angular2_webapp_manager.apicontrollers
                 }
             }
         }
+
+
 
 
         [AcceptVerbs("Post")]
@@ -306,11 +400,10 @@ namespace noya_angular2_webapp_manager.apicontrollers
             try
             {
                 con.Open();
-                SqlCommand cmd = new SqlCommand("CalendarItemSelect_New", con);
-                cmd.Parameters.AddWithValue("@lang", "Text_Eng");
+                SqlCommand cmd = new SqlCommand("CalendarItemSelect_New_Manager", con);
+
                 cmd.CommandType = System.Data.CommandType.StoredProcedure;
                 List<CalendarItem> list = new List<CalendarItem>();
-                CalendarItem resultItem = null;
                 using (SqlDataReader reader = cmd.ExecuteReader())
                 {
                     while (reader.Read())
@@ -319,7 +412,9 @@ namespace noya_angular2_webapp_manager.apicontrollers
                         item.TimeStamp = Convert.ToDateTime(reader["TimeStamp"]);
                         item.Visible = Convert.ToBoolean(reader["Visible"]);
                         item.Text_Eng = reader["Text_Eng"].ToString();
+                        item.Text_Heb = reader["Text_Heb"].ToString();
                         item.DataDate = Convert.ToDateTime(reader["DataDate"]).Date;
+                        item.DataDateString = Convert.ToDateTime(reader["DataDate"]).ToString("yyyy-MM-dd");
                         item.ID = Convert.ToInt32(reader["ID"]);
                         list.Add(item);
                     }
@@ -341,16 +436,17 @@ namespace noya_angular2_webapp_manager.apicontrollers
         }
 
         [AcceptVerbs("Post")]
-        public ProgramsResponse GetPrograms(DataRequest request)
+        public ProgramsResponse GetPrograms(dynamic request)
         {
+            var dataRequest = this.ConvertStupidArgumentToNormalDataRequset<DataRequest>(request);
 
             SqlConnection connection = initializeTestConnection();
             try
             {
                 connection.Open();
-                SqlCommand cmd = new SqlCommand("ProgramsSelect", connection);
+                SqlCommand cmd = new SqlCommand("ProgramsSelect_Manager", connection);
                 cmd.CommandType = System.Data.CommandType.StoredProcedure;
-                cmd.Parameters.AddWithValue("@lang", "Eng");
+
                 List<Program> prgs = new List<Program>();
                 using (SqlDataReader reader = cmd.ExecuteReader())
                 {

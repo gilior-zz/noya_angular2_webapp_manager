@@ -52,6 +52,9 @@ export interface CalendarRequest extends DataRequest {
 
 
 }
+export interface UpdateProgramsRequest extends UpdateDataRequest {
+    Programs: Program[];
+}
 
 export interface Program {
     ID: number;
@@ -60,6 +63,7 @@ export interface Program {
     Eng: string;
     TimeStamp: Date;
     Order: number;
+    ToDelete: boolean;
 }
 
 
@@ -70,7 +74,9 @@ export interface CalendarItem {
     Visible: boolean;
     TimeStamp: Date;
     DataDate: Date;
+    DataDateString: string;
     ID: number;
+    ToDelete: boolean;
 }
 
 export interface CV {
@@ -129,6 +135,11 @@ export interface UpdateLinksRequest extends UpdateDataRequest {
 export interface UpdateCVRequest extends UpdateDataRequest {
     CVs: CV[];
 }
+
+export interface UpdateCalendarRequest extends UpdateDataRequest {
+    CalendarItems: CalendarItem[];
+}
+
 
 
 

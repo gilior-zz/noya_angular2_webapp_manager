@@ -1,0 +1,37 @@
+﻿
+<form role="form" (ngSubmit)="updateCalendar()" #theForm="ngForm" class="form">
+    <div [class.disabled]="pending" [class.deleted-menu-item]="item.ToDelete" class="bottom-margin-15 menu-item panel panel-default">
+        <div id="" class="panel-body">
+            <input type="hidden" [(ngModel)]="item.ID" />
+            <div [class.disabled]="item.ToDelete" id="foo" class="form-group">
+                <label for="DataDate">Data Date</label>
+                <input type="date" class="form-control" required
+                       [(ngModel)]="item.DataDateString" />
+            </div>
+            <div [class.disabled]="item.ToDelete" id="" class="form-group">
+                <label for="Text_Heb" class="text-right">עברית</label>
+                <textarea [(ngModel)]="item.Text_Heb" name="editor2" class="fff" id="editor_heb"></textarea>
+            </div>
+            <div [class.disabled]="item.ToDelete" id="" class="form-group">
+                <label for="Eng">English</label>
+                <textarea [(ngModel)]="item.Text_Eng" name="editor2" class="fff" id="editor_eng"></textarea>
+            </div>
+
+            <div [class.disabled]="item.ToDelete" id="" class="form-group">
+                <label for="Visible">Visible</label>
+                <input type="checkbox" class="form-control"
+                       [(ngModel)]="item.Visible" />
+            </div>
+
+            <button type="button" class="btn btn-danger" (click)="item.ToDelete=!item.ToDelete"><span [hidden]="item.ToDelete"> delete item</span><span [hidden]="!item.ToDelete">oops...</span></button>
+        </div>
+
+
+    </div>
+    <button type="button" (click)="addNew()" [disabled]="!theForm.form.valid">Add new Item</button>
+    <button id="submit-button" type="submit" [disabled]="!theForm.form.valid">Save changes</button>
+    <span class="text-warning" [hidden]="HideProblem || pending">Problem-plz try again leter</span>
+    <span class="text-success " [hidden]="HideSuccess || pending">Done!</span>
+</form>
+
+
