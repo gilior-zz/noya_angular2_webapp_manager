@@ -1,0 +1,32 @@
+﻿<div class="alert alert-danger jumbotron mark">images must be inside windows pictures folder - any other location wont work </div>
+<form role="form" (ngSubmit)="updateIamges()" #theForm="ngForm" class="form">
+    <div [class.disabled]="pending" [class.deleted-menu-item]="item.ToDelete" class="bottom-margin-15 menu-item panel panel-default">
+        <div id="" class="panel-body">
+            <input type="hidden" [(ngModel)]="item.ID" />
+            <div [class.disabled]="item.ToDelete" id="" class="form-group">
+                <label for="Image" class="text-right">תמונה</label>
+                <input [(ngModel)]="item.ImagePath" id="fileupload" type="file" name="files" multiple accept="image/gif, image/jpeg, image/png">
+            </div>
+            <!--<div [class.disabled]="item.ToDelete" id="" class="form-group">
+                <label for="Visible">Visible</label>
+                <input type="checkbox" class="form-control"
+                       [(ngModel)]="item.Visible" />
+            </div>
+            <div [class.disabled]="item.ToDelete" id="" class="form-group">
+                <label for="Order">Order</label>
+                <input type="number" class="form-control"
+                       [(ngModel)]="item.Order" />
+            </div>-->
+
+
+        </div>
+    </div>
+
+
+    <button id="submit-button" type="submit" [disabled]="!theForm.form.valid || pending">Save changes</button>
+    <button (click)="toImages()">Go Back</button>
+    <span class="text-warning" [hidden]="HideProblem || pending">Problem-plz try again leter</span>
+    <span class="text-success " [hidden]="HideSuccess || pending">Done!</span>
+</form>
+
+

@@ -47,7 +47,7 @@ export class ProgramEditorComponent implements AfterViewInit, OnDestroy {
     }
     postUpdateSuccess() {
         this.updateVariables(false, true, false);
-        this.toPrograms(true);
+        this.toPrograms();
 
     }
 
@@ -58,7 +58,7 @@ export class ProgramEditorComponent implements AfterViewInit, OnDestroy {
 
     }
 
-    toPrograms(goToBottom: boolean) {
+    toPrograms() {
         this.router.navigate(['Programs']);
     }
 

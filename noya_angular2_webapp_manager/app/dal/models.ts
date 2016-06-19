@@ -8,6 +8,14 @@ export interface DataRequest {
 export interface UpdatesRsponse extends DataResponse {
     Updates: Update[];
 }
+export interface ImagesRsponse extends DataResponse {
+    Images: ImageGalleryItem[];
+}
+export interface PressRsponse extends DataResponse {
+    PressItems: PressItem[];
+}
+
+
 
 export interface ImageGalleryRequest extends DataRequest {
 
@@ -16,10 +24,14 @@ export interface ImageGalleryRequest extends DataRequest {
 
 export interface ImageGalleryItem {
     ID: number;
-    ImageName: string
+    ImagePath: string
+    ImageURL: string
+    ImageID: string
     Visible: boolean
     Order: number;
     TimeStamp: Date;
+    ToDelete: boolean;
+    IsNew: boolean;
 }
 
 export interface ImageGalleryResponse extends DataResponse {
@@ -35,7 +47,7 @@ export interface PressItem {
     Heb: string;
     Eng: string;
     TimeStamp: Date;
-
+    ToDelete: boolean;
 }
 
 
@@ -46,6 +58,7 @@ export interface Update {
     Data_Eng: string;
     Order: number;
     TimeStamp: Date;
+    ToDelete: boolean;
 }
 
 export interface CalendarRequest extends DataRequest {
@@ -138,6 +151,18 @@ export interface UpdateCVRequest extends UpdateDataRequest {
 
 export interface UpdateCalendarRequest extends UpdateDataRequest {
     CalendarItems: CalendarItem[];
+}
+
+export interface UpdateUpdatesRequest extends UpdateDataRequest {
+    Updates: Update[];
+}
+
+export interface UpdateImagesRequest extends UpdateDataRequest {
+    Images: ImageGalleryItem[];
+}
+
+export interface UpdatePressRequest extends UpdateDataRequest {
+    PressItems: PressItem[];
 }
 
 

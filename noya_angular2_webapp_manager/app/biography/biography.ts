@@ -28,8 +28,7 @@ export class BiographyComponent implements OnInit, AfterViewInit, OnDestroy {
     }
 
     ngAfterViewInit() {
-        CKEDITOR.replace('editor_heb');
-        CKEDITOR.replace('editor_eng');
+
 
     }
 
@@ -97,7 +96,14 @@ export class BiographyComponent implements OnInit, AfterViewInit, OnDestroy {
     }
 
 
-
+    toCKEDITOR() {
+        var engID = 'editor_eng';
+        var hebID = 'editor_heb';
+        if (!CKEDITOR.instances[engID])
+            CKEDITOR.replace(engID);
+        if (!CKEDITOR.instances[hebID])
+            CKEDITOR.replace(hebID);
+    }
 
     ngOnInit() {
         this.loadItems(true);

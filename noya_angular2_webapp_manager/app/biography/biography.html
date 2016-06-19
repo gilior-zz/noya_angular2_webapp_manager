@@ -21,5 +21,5 @@
     <button id="submit-button" type="submit" [disabled]="!theForm.form.valid">Save changes</button>
     <span class="text-warning" [hidden]="HideProblem || pending">Problem-plz try again leter</span>
     <span class="text-success " [hidden]="HideSuccess || pending">Done!</span>
-
+    <span hidden>{{toCKEDITOR()}}</span>
 </form>

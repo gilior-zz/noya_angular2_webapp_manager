@@ -8,6 +8,9 @@ using System.Web.Http;
 using noya_angular2_webapp_manager.Dal;
 using System.Configuration;
 using Newtonsoft.Json.Linq;
+using CloudinaryDotNet;
+using CloudinaryDotNet.Actions;
+using System.IO;
 
 namespace noya_angular2_webapp_manager.apicontrollers
 {
@@ -85,6 +88,170 @@ namespace noya_angular2_webapp_manager.apicontrollers
                         command.Parameters.AddWithValue("@Text_Eng", item.Text_Eng);
                         command.Parameters.AddWithValue("@Text_Heb", item.Text_Heb);
                         command.Parameters.AddWithValue("@Visible", item.Visible);
+                        command.Parameters.AddWithValue("@ToDelete", item.ToDelete);
+                        command.ExecuteNonQuery();
+                    }
+                    transaction.Commit();
+                    return new UpdateResponse() { UpdateStatus = UpdateStatus.Success };
+                }
+                catch (Exception ex)
+                {
+                    try
+                    {
+                        transaction.Rollback();
+                    }
+                    catch (Exception ex2)
+                    {
+                        return new UpdateResponse() { UpdateStatus = UpdateStatus.Fail };
+                    }
+                    return new UpdateResponse() { UpdateStatus = UpdateStatus.Fail };
+                }
+            }
+        }
+
+        [AcceptVerbs("Post")]
+        public UpdateResponse UpdateUpdates(dynamic request)
+        {
+            var dataRequest = this.ConvertStupidArgumentToNormalUpdateRequset<UpdateUpdatesRequest>(request) as UpdateUpdatesRequest;
+            using (SqlConnection connection = initializeTestConnection())
+            {
+                connection.Open();
+                SqlCommand command = connection.CreateCommand();
+                SqlTransaction transaction;
+                transaction = connection.BeginTransaction("SampleTransaction");
+                command.Connection = connection;
+                command.Transaction = transaction;
+                try
+                {
+                    foreach (var item in dataRequest.Updates)
+                    {
+                        command.Parameters.Clear();
+                        command.CommandText = "UpdateHotUpdates";
+                        command.CommandType = System.Data.CommandType.StoredProcedure;
+
+                        command.Parameters.AddWithValue("@ID", item.ID);
+                        command.Parameters.AddWithValue("@Data_Heb", item.Data_Heb);
+                        command.Parameters.AddWithValue("@Data_Eng", item.Data_Eng);
+                        command.Parameters.AddWithValue("@Order", item.Order);
+                        command.Parameters.AddWithValue("@ToDelete", item.ToDelete);
+                        command.ExecuteNonQuery();
+                    }
+                    transaction.Commit();
+                    return new UpdateResponse() { UpdateStatus = UpdateStatus.Success };
+                }
+                catch (Exception ex)
+                {
+                    try
+                    {
+                        transaction.Rollback();
+                    }
+                    catch (Exception ex2)
+                    {
+                        return new UpdateResponse() { UpdateStatus = UpdateStatus.Fail };
+                    }
+                    return new UpdateResponse() { UpdateStatus = UpdateStatus.Fail };
+                }
+            }
+        }
+
+        [AcceptVerbs("Post")]
+        public UpdateResponse UpdateImages(dynamic request)
+        {
+            Account acc = new Account(
+                    Properties.Settings.Default.CloudName,
+                    Properties.Settings.Default.ApiKey,
+                    Properties.Settings.Default.ApiSecret);
+
+            var m_cloudinary = new Cloudinary(acc);
+            var dataRequest = this.ConvertStupidArgumentToNormalUpdateRequset<UpdateImagesRequest>(request) as UpdateImagesRequest;
+            using (SqlConnection connection = initializeTestConnection())
+            {
+                connection.Open();
+                SqlCommand command = connection.CreateCommand();
+                SqlTransaction transaction;
+                transaction = connection.BeginTransaction("SampleTransaction");
+                command.Connection = connection;
+                command.Transaction = transaction;
+                try
+                {
+                    foreach (var item in dataRequest.Images)
+                    {
+                        ImageUploadResult imageUploadResult = null;
+                        DelResResult delResResult = null;
+                        try
+                        {
+                            if (item.IsNew)
+                            {
+                                imageUploadResult = m_cloudinary.Upload(new ImageUploadParams()
+                                {
+                                    File = new CloudinaryDotNet.Actions.FileDescription(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyPictures), item.ImagePath)),
+                                    PublicId = Path.GetFileNameWithoutExtension(item.ImagePath),
+
+                                });
+                            }
+                            if (item.ToDelete)
+                            {
+                                delResResult = m_cloudinary.DeleteResources(ResourceType.Image, Path.GetFileNameWithoutExtension(item.ImageURL));
+                            }
+                        }
+                        catch (Exception)
+                        {
+
+                            continue;
+                        }
+
+                        command.Parameters.Clear();
+                        command.CommandText = "ImagesUpdate";
+                        command.CommandType = System.Data.CommandType.StoredProcedure;
+
+                        command.Parameters.AddWithValue("@ID", item.ID);
+                        command.Parameters.AddWithValue("@ImageURL", imageUploadResult?.Uri?.AbsoluteUri);
+                        command.Parameters.AddWithValue("@ImageID", imageUploadResult?.PublicId);
+                        command.Parameters.AddWithValue("@Visible", item.Visible);
+                        command.Parameters.AddWithValue("@Order", item.Order);
+                        command.Parameters.AddWithValue("@ToDelete", item.ToDelete);
+                        command.ExecuteNonQuery();
+                    }
+                    transaction.Commit();
+                    return new UpdateResponse() { UpdateStatus = UpdateStatus.Success };
+                }
+                catch (Exception ex)
+                {
+                    try
+                    {
+                        transaction.Rollback();
+                    }
+                    catch (Exception ex2)
+                    {
+                        return new UpdateResponse() { UpdateStatus = UpdateStatus.Fail };
+                    }
+                    return new UpdateResponse() { UpdateStatus = UpdateStatus.Fail };
+                }
+            }
+        }
+
+        [AcceptVerbs("Post")]
+        public UpdateResponse UpdatePress(dynamic request)
+        {
+            var dataRequest = this.ConvertStupidArgumentToNormalUpdateRequset<UpdatePressRequest>(request) as UpdatePressRequest;
+            using (SqlConnection connection = initializeTestConnection())
+            {
+                connection.Open();
+                SqlCommand command = connection.CreateCommand();
+                SqlTransaction transaction;
+                transaction = connection.BeginTransaction("SampleTransaction");
+                command.Connection = connection;
+                command.Transaction = transaction;
+                try
+                {
+                    foreach (var item in dataRequest.PressItems)
+                    {
+                        command.Parameters.Clear();
+                        command.CommandText = "PressUpdate";
+                        command.CommandType = System.Data.CommandType.StoredProcedure;
+                        command.Parameters.AddWithValue("@ID", item.ID);
+                        command.Parameters.AddWithValue("@Heb", item.Heb);
+                        command.Parameters.AddWithValue("@Eng", item.Eng);
                         command.Parameters.AddWithValue("@ToDelete", item.ToDelete);
                         command.ExecuteNonQuery();
                     }
@@ -327,9 +494,9 @@ namespace noya_angular2_webapp_manager.apicontrollers
             try
             {
                 con.Open();
-                SqlCommand cmd = new SqlCommand("HotUpdatesSelect", con);
+                SqlCommand cmd = new SqlCommand("HotUpdatesSelect_Manager", con);
                 cmd.CommandType = System.Data.CommandType.StoredProcedure;
-                cmd.Parameters.AddWithValue("@lang", "Data_Eng");
+
                 List<Update> updates = new List<Update>();
                 using (SqlDataReader reader = cmd.ExecuteReader())
                 {
@@ -341,7 +508,7 @@ namespace noya_angular2_webapp_manager.apicontrollers
                             Order = Convert.ToDouble(reader["Order"]),
                             Data_Heb = reader["Data_Heb"].ToString(),
                             Data_Eng = reader["Data_Eng"].ToString(),
-                            TimeStamp = Convert.ToDateTime(reader["TimeStamp"]),
+                            TimeStamp = Convert.ToDateTime(reader["TimeStamp"])
                         };
                         updates.Add(update);
                     }
@@ -364,9 +531,9 @@ namespace noya_angular2_webapp_manager.apicontrollers
             try
             {
                 con.Open();
-                SqlCommand cmd = new SqlCommand("PressSelect", con);
+                SqlCommand cmd = new SqlCommand("PressSelect_Manager", con);
                 cmd.CommandType = System.Data.CommandType.StoredProcedure;
-                cmd.Parameters.AddWithValue("@lang", "Eng");
+
                 List<PressItem> presses = new List<PressItem>();
                 using (SqlDataReader reader = cmd.ExecuteReader())
                 {
@@ -375,7 +542,6 @@ namespace noya_angular2_webapp_manager.apicontrollers
                         PressItem item = new PressItem()
                         {
                             ID = Convert.ToInt32(reader["ID"]),
-
                             Eng = reader["Eng"].ToString(),
                             Heb = reader["Heb"].ToString(),
                             TimeStamp = Convert.ToDateTime(reader["TimeStamp"]),
@@ -517,9 +683,9 @@ namespace noya_angular2_webapp_manager.apicontrollers
             try
             {
                 con.Open();
-                SqlCommand cmd = new SqlCommand("ImagesGallery_NewSelect", con);
+                SqlCommand cmd = new SqlCommand("ImagesGallery_NewSelect_Manager", con);
                 cmd.CommandType = System.Data.CommandType.StoredProcedure;
-                List<ImageGalleryItem> rawList = new List<ImageGalleryItem>();
+                List<ImageGalleryItem> res = new List<ImageGalleryItem>();
                 using (SqlDataReader reader = cmd.ExecuteReader())
                 {
                     while (reader.Read())
@@ -527,19 +693,20 @@ namespace noya_angular2_webapp_manager.apicontrollers
                         ImageGalleryItem imageGalleryItem = new ImageGalleryItem()
                         {
                             ID = Convert.ToInt32(reader["ID"]),
-                            ImageName = Convert.ToString(reader["ImageName"]),
+                            ImageID = Convert.ToString(reader["ImageID"]),
+                            ImageURL = Convert.ToString(reader["ImageURL"]),
                             Order = Convert.ToDouble(reader["Order"]),
                             TimeStamp = Convert.ToDateTime(reader["TimeStamp"]),
                             Visible = Convert.ToBoolean(reader["Visible"])
                         };
-                        rawList.Add(imageGalleryItem);
+                        res.Add(imageGalleryItem);
                     }
                 }
 
-                ImageGalleryResponse imageGalleryResponse = null;
 
 
-                return imageGalleryResponse;
+
+                return new ImageGalleryResponse() { Images = res.ToArray() };
             }
             catch (Exception)
             {

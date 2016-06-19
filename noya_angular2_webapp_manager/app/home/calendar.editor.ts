@@ -48,7 +48,7 @@ export class CalendarEditorComponent implements AfterViewInit, OnDestroy {
     }
     postUpdateSuccess() {
         this.updateVariables(false, true, false);
-        this.toPrograms(true);
+        this.toHome();
 
     }
 
@@ -59,7 +59,7 @@ export class CalendarEditorComponent implements AfterViewInit, OnDestroy {
 
     }
 
-    toPrograms(goToBottom: boolean) {
+    toHome() {
         this.router.navigate(['Home']);
     }
 

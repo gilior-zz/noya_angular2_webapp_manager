@@ -23,10 +23,9 @@
                        [(ngModel)]="item.Order" />
             </div>
 
-            <button type="button" class="btn btn-danger" (click)="item.ToDelete=!item.ToDelete"><span [hidden]="item.ToDelete"> delete item</span><span [hidden]="!item.ToDelete">oops...</span></button>
         </div>
     </div>
- 
+    <button (click)="toPrograms()">Cancel </button>
     <button id="submit-button" type="submit" [disabled]="!theForm.form.valid">Save changes</button>
     <span class="text-warning" [hidden]="HideProblem || pending">Problem-plz try again leter</span>
     <span class="text-success " [hidden]="HideSuccess || pending">Done!</span>

@@ -17,7 +17,7 @@ export class ProgramsComponent implements AfterViewInit, OnInit, AfterViewChecke
         //document.location.reload();
     }
     ngAfterContentInit() {
-
+       
     }
 
     ngOnDestroy() {

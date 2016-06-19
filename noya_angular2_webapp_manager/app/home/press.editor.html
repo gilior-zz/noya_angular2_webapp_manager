@@ -1,0 +1,24 @@
+﻿
+<form role="form" (ngSubmit)="updatePressItems()" #theForm="ngForm" class="form">
+    <div [class.disabled]="pending"  [class.deleted-menu-item]="item.ToDelete" class="bottom-margin-15 menu-item panel panel-default">
+        <div id="" class="panel-body">
+            <input type="hidden" [(ngModel)]="item.ID" />
+            <div [class.disabled]="item.ToDelete" id="" class="form-group">
+                <label for="Heb" class="text-right">עברית</label>
+                <textarea [(ngModel)]="item.Heb" name="editor2" class="fff" id="editor_heb_press"></textarea>
+            </div>
+            <div [class.disabled]="item.ToDelete" id="" class="form-group">
+                <label for="Eng">English</label>
+                <textarea [(ngModel)]="item.Eng" name="editor2" class="fff" id="editor_eng_press"></textarea>
+            </div>
+                  </div>
+        
+
+    </div>
+    <button (click)="toPrograms()">Cancel</button>
+    <button id="submit-button" type="submit" [disabled]="!theForm.form.valid">Save changes</button>
+    <span class="text-warning" [hidden]="HideProblem || pending">Problem-plz try again leter</span>
+    <span class="text-success " [hidden]="HideSuccess || pending">Done!</span>
+</form>
+
+

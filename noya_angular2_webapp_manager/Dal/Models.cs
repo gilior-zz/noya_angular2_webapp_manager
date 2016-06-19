@@ -27,6 +27,24 @@ namespace noya_angular2_webapp_manager.Dal
         public CalendarItem[] CalendarItems { get; set; }
 
     }
+
+    public class UpdateUpdatesRequest : UpdateDataRequest
+    {
+        public Update[] Updates { get; set; }
+
+    }
+
+    public class UpdateImagesRequest : UpdateDataRequest
+    {
+        public ImageGalleryItem[] Images { get; set; }
+
+    }
+
+    public class UpdatePressRequest : UpdateDataRequest
+    {
+        public PressItem[] PressItems { get; set; }
+
+    }
     public class UpdateLinksRequest : UpdateDataRequest
     {
         public Link[] Links { get; set; }
@@ -58,6 +76,7 @@ namespace noya_angular2_webapp_manager.Dal
 
         public double Order { get; set; }
         public DateTime TimeStamp { get; set; }
+        public bool ToDelete { get; set; }
 
     }
 
@@ -71,10 +90,14 @@ namespace noya_angular2_webapp_manager.Dal
     public class ImageGalleryItem
     {
         public int ID { get; set; }
-        public string ImageName { get; set; }
+        public string ImagePath { get; set; }
+        public string ImageURL { get; set; }
+        public string ImageID { get; set; }
         public double Order { get; set; }
         public bool Visible { get; set; }
         public DateTime TimeStamp { get; set; }
+        public bool ToDelete { get; set; }
+        public bool IsNew { get; set; }
 
     }
 
@@ -97,6 +120,7 @@ namespace noya_angular2_webapp_manager.Dal
         public string Heb { get; set; }
         public string Eng { get; set; }
         public DateTime TimeStamp { get; set; }
+        public bool ToDelete { get; set; }
 
     }
 

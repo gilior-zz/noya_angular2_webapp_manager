@@ -6,15 +6,15 @@
             <div [class.disabled]="item.ToDelete" id="foo" class="form-group">
                 <label for="DataDate">Data Date</label>
                 <input type="date" class="form-control" required
-                       [(ngModel)]="item.DataDateString" />
+                       [(ngModel)]="item.DataDateString"   />
             </div>
             <div [class.disabled]="item.ToDelete" id="" class="form-group">
                 <label for="Text_Heb" class="text-right">עברית</label>
-                <textarea [(ngModel)]="item.Text_Heb" name="editor2" class="fff" id="editor_heb_{{item.ID}}"></textarea>
+                <textarea [(ngModel)]="item.Text_Heb" name="editor2" class="fff" id="editor_heb_calendar_{{item.ID}}"></textarea>
             </div>
             <div [class.disabled]="item.ToDelete" id="" class="form-group">
                 <label for="Eng">English</label>
-                <textarea [(ngModel)]="item.Text_Eng" name="editor2" class="fff" id="editor_eng_{{item.ID}}"></textarea>
+                <textarea [(ngModel)]="item.Text_Eng" name="editor2" class="fff" id="editor_eng_calendar_{{item.ID}}"></textarea>
             </div>
 
             <div [class.disabled]="item.ToDelete" id="" class="form-group">

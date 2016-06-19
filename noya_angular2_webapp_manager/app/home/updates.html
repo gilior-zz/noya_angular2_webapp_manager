@@ -1,1 +1,32 @@
-﻿<h1>updates</h1>
+﻿
+<form role="form" *ngIf="active" (ngSubmit)="updateUpdates()" #theForm="ngForm" class="form">
+    <div [class.disabled]="pending" *ngFor="#item of updates; #i=index" [class.deleted-menu-item]="item.ToDelete" class="bottom-margin-15 menu-item panel panel-default">
+        <div id="" class="panel-body">
+            <input type="hidden" [(ngModel)]="item.ID" />
+            <div [class.disabled]="item.ToDelete" id="" class="form-group">
+                <label for="Data_Heb" class="text-right">עברית</label>
+                <textarea [(ngModel)]="item.Data_Heb" name="editor2" class="fff" id="editor_heb_update_{{item.ID}}"></textarea>
+            </div>
+            <div [class.disabled]="item.ToDelete" id="" class="form-group">
+                <label for="Data_Eng">English</label>
+                <textarea [(ngModel)]="item.Data_Eng" name="editor2" class="fff" id="editor_eng_update_{{item.ID}}"></textarea>
+            </div>
+
+            <div [class.disabled]="item.ToDelete" id="" class="form-group">
+                <label for="Order">Order</label>
+                <input type="number" class="form-control"
+                       [(ngModel)]="item.Order" />
+            </div>
+
+            <button type="button" class="btn btn-danger" (click)="item.ToDelete=!item.ToDelete"><span [hidden]="item.ToDelete"> delete item</span><span [hidden]="!item.ToDelete">oops...</span></button>
+        </div>
+        <span hidden>{{toCKEDITOR(i)}}</span>
+
+    </div>
+    <button type="button" (click)="addNew()" [disabled]="!theForm.form.valid">Add new Item</button>
+    <button id="submit-button" type="submit" [disabled]="!theForm.form.valid">Save changes</button>
+    <span class="text-warning" [hidden]="HideProblem || pending">Problem-plz try again leter</span>
+    <span class="text-success " [hidden]="HideSuccess || pending">Done!</span>
+</form>
+
+

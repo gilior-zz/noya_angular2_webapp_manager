@@ -34,9 +34,9 @@ export class CalendarComponent implements OnInit,OnDestroy {
 
 
         this.calendars.forEach((item) => {
-            var id = 'editor_eng_' + item.ID;
+            var id = 'editor_eng_calendar_' + item.ID;
             var editorEng = CKEDITOR.instances[id];
-            id = 'editor_heb_' + item.ID;
+            id = 'editor_heb_calendar_' + item.ID;
             var editorHeb = CKEDITOR.instances[id];
             item.Text_Eng = editorEng.getData();
             item.Text_Heb = editorHeb.getData();
@@ -57,8 +57,8 @@ export class CalendarComponent implements OnInit,OnDestroy {
        
         if (index == this.calendars.length - 1) {
             this.calendars.forEach((item) => {
-                var engID = 'editor_eng_' + item.ID;
-                var hebID = 'editor_heb_' + item.ID;
+                var engID = 'editor_heb_calendar_' + item.ID;
+                var hebID = 'editor_eng_calendar_' + item.ID;
                 if (!CKEDITOR.instances[engID])
                     CKEDITOR.replace(engID);
                 if (!CKEDITOR.instances[hebID])
