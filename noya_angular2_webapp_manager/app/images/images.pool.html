@@ -11,23 +11,15 @@
 
 
                 </div>
-                <div [class.disabled]="item.ToDelete" id="" class="form-group">
-                    <label for="Visible">Visible</label>
-                    <input type="checkbox" class="form-control"
-                           [(ngModel)]="item.Visible" />
-                </div>
-                <div [class.disabled]="item.ToDelete" id="" class="form-group">
-                    <label for="Order">Order</label>
-                    <input type="number" class="form-control"
-                           [(ngModel)]="item.Order" />
-                </div>
+
 
                 <button type="button" class="btn btn-danger" (click)="item.ToDelete=!item.ToDelete"><span [hidden]="item.ToDelete"> delete item</span><span [hidden]="!item.ToDelete">oops...</span></button>
             </div>
 
-
+            <input #inp [(ngModel)]="item.ImageURL" readonly type="text" (click)="selectText(inp)" class="text-info alert alert-info full-width text-cursor" />
         </div>
 
+        <button type="button" (click)="addNew()" [disabled]="!theForm.form.valid || pending">Add new Item</button>
         <button id="submit-button" type="submit" [disabled]="!theForm.form.valid || pending">Save changes</button>
         <span class="text-warning" [hidden]="HideProblem || pending">Problem-plz try again leter</span>
         <span class="text-success " [hidden]="HideSuccess || pending">Done!</span>

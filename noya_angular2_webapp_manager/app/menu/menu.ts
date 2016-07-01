@@ -1,10 +1,12 @@
 ﻿import {Component, OnInit} from 'angular2/core'
 import { CanDeactivate, ComponentInstruction } from 'angular2/router'
+import {ImageSelectorComponent} from '../components/image.selector'
 
 import * as services from '../services/services'
 import * as model from '../dal/models'
 @Component({
-    template: require('./menu.html!text')
+    template: require('./menu.html!text'),
+    directives: [ImageSelectorComponent]
 })
 export class MenuComponent implements OnInit, CanDeactivate {
     menuItems: model.MenuItem[];

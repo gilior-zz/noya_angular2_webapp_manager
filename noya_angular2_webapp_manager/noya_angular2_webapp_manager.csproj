@@ -91,6 +91,7 @@
   <ItemGroup>
     <Content Include="app\app.component.html" />
     <Content Include="app\biography\biography.html" />
+    <Content Include="app\components\image.selector.html" />
     <Content Include="app\home\calendar.editor.html" />
     <Content Include="app\home\calendar.html" />
     <Content Include="app\home\home.html" />
@@ -100,6 +101,7 @@
     <Content Include="app\home\updates.html" />
     <Content Include="app\images\images.editor.html" />
     <Content Include="app\images\images.html" />
+    <Content Include="app\images\images.pool.html" />
     <Content Include="app\links\link.editor.html" />
     <Content Include="app\links\links.html" />
     <Content Include="app\menu\menu.html" />
@@ -1304,6 +1306,7 @@
   <ItemGroup>
     <Compile Include="apicontrollers\DataController.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Dal\ExtensionMethods.cs" />
     <Compile Include="Dal\Models.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -1318,6 +1321,7 @@
   <ItemGroup>
     <TypeScriptCompile Include="app\app.component.ts" />
     <TypeScriptCompile Include="app\biography\biography.ts" />
+    <TypeScriptCompile Include="app\components\image.selector.ts" />
     <TypeScriptCompile Include="app\dal\models.ts" />
     <TypeScriptCompile Include="app\home\calendar.editor.ts" />
     <TypeScriptCompile Include="app\home\calendar.ts" />
@@ -1327,6 +1331,7 @@
     <TypeScriptCompile Include="app\home\updates.editor.ts" />
     <TypeScriptCompile Include="app\home\updates.ts" />
     <TypeScriptCompile Include="app\images\images.editor.ts" />
+    <TypeScriptCompile Include="app\images\images.pool.ts" />
     <TypeScriptCompile Include="app\images\images.ts" />
     <TypeScriptCompile Include="app\links\link.editor.ts" />
     <TypeScriptCompile Include="app\links\links.ts" />

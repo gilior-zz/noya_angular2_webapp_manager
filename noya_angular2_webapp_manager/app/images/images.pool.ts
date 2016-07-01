@@ -2,9 +2,9 @@
 import * as services from '../services/services'
 import * as model from '../dal/models'
 import {Router} from  'angular2/router'
-@Component({ selector: 'updates', template: require('./images.html!text') })
+@Component({ selector: 'updates', template: require('./images.pool.html!text') })
 
-export class ImagesComponent implements OnInit, OnDestroy {
+export class ImagesPoolComponent implements OnInit, OnDestroy {
     HideProblem: boolean = true;
     HideSuccess: boolean = true;
     pending: boolean = false;
@@ -19,7 +19,7 @@ export class ImagesComponent implements OnInit, OnDestroy {
     public selectText(ele: HTMLInputElement): void {
         ele.setSelectionRange(0, ele.value.length);
     }
-    
+
 
 
     ngOnDestroy() {

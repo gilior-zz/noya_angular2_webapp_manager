@@ -187,6 +187,7 @@ export interface MenuItem {
     isDefault: boolean;
     ToDelete: boolean;
     Name: string;
+    ImageID: number;
 }
 
 export interface DataError {

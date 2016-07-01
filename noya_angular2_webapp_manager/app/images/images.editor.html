@@ -1,6 +1,7 @@
-﻿<div class="alert alert-danger jumbotron mark">images must be inside windows pictures folder - any other location wont work </div>
-<form role="form" (ngSubmit)="updateIamges()" #theForm="ngForm" class="form">
-    <div [class.disabled]="pending" [class.deleted-menu-item]="item.ToDelete" class="bottom-margin-15 menu-item panel panel-default">
+﻿
+<div class="alert alert-danger jumbotron mark">images must be inside windows pictures folder - any other location wont work </div>
+<form [class.disabled]="pending" role="form" (ngSubmit)="updateIamges()" #theForm="ngForm" class="form">
+    <div [class.deleted-menu-item]="item.ToDelete" class="bottom-margin-15 menu-item panel panel-default">
         <div id="" class="panel-body">
             <input type="hidden" [(ngModel)]="item.ID" />
             <div [class.disabled]="item.ToDelete" id="" class="form-group">

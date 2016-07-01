@@ -7,6 +7,7 @@ import {MenuComponent} from './menu/menu'
 import {LinkComponent} from './links/links'
 import {ImagesComponent} from './images/images'
 import {ImagesEditorComponent} from './images/images.editor'
+import {ImagesPoolComponent} from './images/images.pool'
 
 import {ProgramsComponent} from './programs/programs'
 import {HomeComponent} from './home/home'
@@ -31,6 +32,7 @@ import * as services from './services/services'
     { path: '/menu', name: 'Menu', component: MenuComponent, useAsDefault: true },
     { path: '/images', name: 'Images', component: ImagesComponent },
     { path: '/images.editor', name: 'ImagesEditor', component: ImagesEditorComponent },
+    { path: '/images.pool', name: 'ImagesPool', component: ImagesPoolComponent },
     { path: '/home', name: 'Home', component: HomeComponent, },
     { path: '/biography', name: 'Biography', component: BiographyComponent },
     { path: '/links', name: 'Links', component: LinkComponent },

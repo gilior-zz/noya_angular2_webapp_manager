@@ -297,6 +297,7 @@ namespace noya_angular2_webapp_manager.apicontrollers
                         command.Parameters.AddWithValue("@Order", item.Order);
                         command.Parameters.AddWithValue("@IsDefault", item.isDefault);
                         command.Parameters.AddWithValue("@ToDelete", item.ToDelete);
+                        command.Parameters.AddWithValue("@ImageID", item.ImageID);
                         command.ExecuteNonQuery();
                     }
                     transaction.Commit();
@@ -428,11 +429,13 @@ namespace noya_angular2_webapp_manager.apicontrollers
                     {
                         double order = Convert.ToDouble(reader["Order"]);
                         int id = Convert.ToInt32(reader["ID"]);
+                        int imageID = reader.IsNUll("ImageID", 0);
+                        //int imageID = Convert.ToInt32(reader["ImageID"]);
                         string text_English = reader["Text_English"].ToString();
                         string Text_Hebrew = reader["Text_Hebrew"].ToString();
                         bool isDefault = bool.Parse(reader["IsDefault"].ToString());
                         string name = reader["Name"].ToString();
-                        var item = new MenuItem(id, order, text_English, Text_Hebrew, isDefault, name);
+                        var item = new MenuItem(id, order, text_English, Text_Hebrew, isDefault, name, imageID);
                         menuItemsList.Add(item);
                     }
                 }

@@ -20,6 +20,7 @@ export class ImagesEditorComponent implements AfterViewInit, OnDestroy {
     }
 
     updateIamges() {
+        this.updateVariables(true);
         var items: model.ImageGalleryItem[] = new Array();
         var ele = <HTMLInputElement>$("#fileupload")[0];
 

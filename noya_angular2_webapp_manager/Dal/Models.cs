@@ -266,7 +266,8 @@ namespace noya_angular2_webapp_manager.Dal
         public string Text_Hebrew;
         public string Name;
         public bool isDefault;
-        public MenuItem(int id, double order, string text_English, string text_Hebrew, bool isDefault, string name)
+        public int ImageID { get; set; }
+        public MenuItem(int id, double order, string text_English, string text_Hebrew, bool isDefault, string name, int imageID)
         {
             this.ID = id;
             this.Order = order;
@@ -275,6 +276,7 @@ namespace noya_angular2_webapp_manager.Dal
             this.isDefault = isDefault;
             this.ToDelete = false;
             this.Name = name;
+            this.ImageID = imageID;
         }
 
     }
